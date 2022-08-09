@@ -6,6 +6,7 @@ import { Routes, Route, Link } from 'react-router-dom';
 import LoginForm from './components/login-form'
 import Nav from "./components/Nav";
 import Matches from "./components/Matches";
+import Preferences from "./components/Preferences"
 
 
 const App = () => {
@@ -137,6 +138,13 @@ const App = () => {
 
         <Route path='/matches' element={
           <Matches state={state} />
+        } />
+
+        <Route path='/preferences' element={
+          <Preferences 
+          preferences={preferences}
+          setPreferences={setPreferences}
+          />
         } />
 
       </Routes>
