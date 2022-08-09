@@ -1,10 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
+import SettingPreferences from "./SettingPreferences"
 
-const Preferences = () => {
+const Preferences = (props) => {
+  // Update users preferences state
+  // need to pass preference key and new value as obj
+  console.log("props", props)
+  const updatePreferences = (e) => {
+    e.preventDefault();
+    console.log("setting preferences")
+    const newPref = {
+      ...props.preferences,
+      location: 'testtt'
+    };
+    console.log('newPref', newPref);
+    axios.post('/api/users/1/preferences', newPref)
+      .then((results) => {
+        props.setPreferences({ ...results.data })
+      })
+      .catch(error => console.log(error));
+  };
+  const title = ["I'm into", "Change location", "Drinking", "Exercise", "I'm looking for", "Minimun Age", "Maximum Age", "Minimum Height", "Maximum Height"]
+  // const userPreferences = []
+  
+  // for (const preference in props.preferences) {
+  //   userPreferences.push(
+  //     <SettingPreferences title={"I'm into"} option={props.preferences[preference]}/>
+  //   )
+  // }
+
+  const userPreferences = Object.values(props.preferences).map((preference, index) => {
+    return (   
+      <SettingPreferences title={title[index]} option={preference}/>
+    )
+  }) 
 
   return (
-    <section className="user-card-container border-8 w-full h-screen place-content-center p-5 border-red-500 ">
-      <article className="rounded-md flex flex-col w-full h-full shadow-lg" >
+    <section className="user-card-container  border-8 w-full h-screen place-content-center p-5">
+      <article className="rounded-md flex flex-col w-full h-full shadow-lg mt-40" >
         <div className='flex justify-center items-center pt-10 border-b-2 pb-6 bg-fuchsia-700'>
 
           <h2 className='text-center pl-1 pr-18 text-2xl bg-fuchsia-700 font-medium text-white'>
@@ -12,18 +45,13 @@ const Preferences = () => {
           </h2>
         </div>
 
-        <div className="border-double border-4 my-2 grid grid-cols-4">
-          <p className="pl-5 pt-5 text-xl col-span-3 mt-2">I'm into</p>
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 hover:text-fuchsia-800 mt-8 ml-12" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-          </svg>
+        {userPreferences}
 
-          <p className="pl-5 pb-5 text-gray-500 text-sm">
-            Women
-          </p>
-        </div>
-        
-
+        <button
+        //onClick={updatePreferences} 
+        class="bg-fuchsia-700 hover:bg-fuchsia-800 text-white font-bold py-2 px-4 rounded text-xl">
+          Save Changes
+        </button>
 
       </article>
     </section>
