@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
+import axios from "axios";
 import { useLocation } from "react-router";
 import {
   BrowserRouter as Router,
@@ -10,15 +11,38 @@ import { propTypes } from "react-tinder-card";
 import * as ROUTES from './routes';
 
 const UserPreferencesDetails = (props) => {
+  const [preferences, setPreferences] = useState({});
+  useEffect(() => {
+    axios.get('/api/users/1/preferences')
+      .then((results) => {
+        setPreferences({ ...results.data });
+      })
+  }, []);
+
+  const updatePreferences = (newValue) => {
+    console.log("setting preferences")
+    const newPref = {
+      ...preferences,
+      fieldName: newValue
+    };
+    console.log('newPref', newPref);
+    axios.post('/api/users/1/preferences', newPref)
+      .then((results) => {
+        props.setPreferences({ ...results.data })
+        console.log("success")
+      })
+      .catch(error => console.log(error));
+  };
+
   const location = useLocation()
   //cannot pass function as state in react router (onChange)
   //how to do this?
-  const { options, title, selected} = location.state;
+  const { options, title, selected, fieldName} = location.state;
+  console.log("prefffff", location.state)
   // const userOption =
-  const helper = (newValue) => {
+  const onClickValue = (newValue) => {
     console.log('coming in helper', newValue);
-    const testPref = {...props.newPref, testGender: newValue};
-    props.setNewPref({...testPref});
+    updatePreferences(newValue)
   };
   
   const renderedOptions = options.map(option => {
@@ -32,7 +56,7 @@ const UserPreferencesDetails = (props) => {
       <div className="grid grid-cols-2">
         <div className="col-span-2">
           <button type="button" className={className}
-          onClick={()=> helper(option.value)}
+          onClick={()=> onClickValue({fieldName: option.id})}
           //how to pass a function through a link to this component
           >
             {option.value}

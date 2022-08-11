@@ -8,10 +8,10 @@ import {
 import * as ROUTES from './routes';
 
 const PreferenceItem = (props) => {
-  const { selected, title, options, onChange } = props;
+  const { selected, title, options, fieldName } = props;
   return (
-    //cannot pass onChange this way
-    <Link to={`${ROUTES.USERPREF}`} state={{ title, selected, options, onChange }}>
+    //cannot pass fieldName this way
+    <Link to={`${ROUTES.USERPREF}`} state={{ title, selected, options, fieldName }}>
       <div className="border-double border-4 grid grid-cols-4">
         <p className="pl-5 pt-5 col-span-3">
           {title}

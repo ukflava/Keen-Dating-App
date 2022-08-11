@@ -1,27 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import PreferenceItem from "./PreferenceItem"
 import AgePreferenceItem from "./AgePreferenceItem"
 
 const Preferences = (props) => {
   const [newPref, setNewPref] = useState({})
+  const [preferences, setPreferences] = useState({});
+  useEffect(() => {
+    axios.get('/api/users/1/preferences')
+      .then((results) => {
+        setPreferences({ ...results.data });
+      })
+  }, []);
+
   // Update users preferences state
   // need to pass preference key and new value as obj
   console.log("props", props)
-  const updatePreferences = (e) => {
-    e.preventDefault();
-    console.log("setting preferences")
-    const newPref = {
-      ...props.preferences,
-      location: 'testtt'
-    };
-    console.log('newPref', newPref);
-    axios.post('/api/users/1/preferences', newPref)
-      .then((results) => {
-        props.setPreferences({ ...results.data })
-      })
-      .catch(error => console.log(error));
-  };
 
   const setGenderPref = (gender)=>{
     console.log("built new pref from new gender value", gender)
@@ -53,46 +47,50 @@ const Preferences = (props) => {
         </div>
         <PreferenceItem 
         title="I'm interested in"
-        options={props.prefOptions.gender}
-        selected={props.preferences.gender}
+        options={props.prefOptions.genders}
+        selected={preferences.gender}
+        fieldName={"gender_id"}
         />
 
         <PreferenceItem 
         title="Exercise"
-        options={props.prefOptions.exercise}
-        selected={props.preferences.exercise}
+        options={props.prefOptions.exercises}
+        selected={preferences.exercise}
+        fieldName={"exercise_id"}
         />
 
         <PreferenceItem 
         title="My location"
         options={props.prefOptions.location}
-        selected={props.preferences.location}/>
+        selected={preferences.location}
+        fieldName={"location"}/>
 
         <PreferenceItem 
         title="Drinks"
-        options={props.prefOptions.drink}
-        selected={props.preferences.drink}/>
+        options={props.prefOptions.drinks}
+        selected={preferences.drink}
+        fieldName={"drink_id"}/>
 
         <PreferenceItem 
         title="I'm looking for"
-        options={props.prefOptions.dating_goal}
-        selected={props.preferences.dating_goal}/>
+        options={props.prefOptions.dating_goals}
+        selected={preferences.dating_goal}/>
 
         <AgePreferenceItem 
         title="Min age"
-        selected={props.preferences.min_age}/>
+        selected={preferences.min_age}/>
 
         <AgePreferenceItem 
         title="Max age"
-        selected={props.preferences.max_age}/>
+        selected={preferences.max_age}/>
 
         <AgePreferenceItem 
         title="Min height"
-        selected={props.preferences.min_height_in_cm}/>
+        selected={preferences.min_height_in_cm}/>
 
         <AgePreferenceItem 
         title="Max height"
-        selected={props.preferences.max_height_in_cm}/>
+        selected={preferences.max_height_in_cm}/>
 
         <button
           //onClick={updatePreferences} 
