@@ -5,11 +5,11 @@ import PreferenceOutput from "./PreferenceOutput";
 import RangePreference from "./RangePreference";
 const Preferences = (props) => {
   const { preferences, setPreferences } = props;
-
+  console.log("props from preferences:", props)
   useEffect(() => {
     axios.get('/api/users/1/preferences')
       .then((results) => {
-        setPreferences({...results.data});
+        setPreferences({ ...results.data });
       })
   }, []);
 
@@ -28,32 +28,26 @@ const Preferences = (props) => {
       .catch(error => console.log(error));
   };
 
-  const PreferenceItemtitles = ["I'm into",  "Drinking", "Exercise", "I'm looking for", "My location"]
-
-  const RangePreferencetitles =["Minimun Age", "Maximum Age", "Minimum Height", "Maximum Height"]
+  const PreferenceItemtitles = ["I'm into", "Drinking", "Exercise", "I'm looking for", "My location"]
+  const RangePreferencetitles = ["Minimun Age", "Maximum Age", "Minimum Height", "Maximum Height"]
 
   const PreferenceOutputArr = Object.values(preferences).slice(0, -4)
-  
-
-  const RangePreferenceArr = Object.values(preferences).slice(-4)
-  console.log(RangePreferenceArr)
-
   const PreferenceOutputs = PreferenceOutputArr.map((preference, index) => {
-    return(
-      <PreferenceOutput 
-      key={index}
-      title={PreferenceItemtitles[index]}
-      selected={preference}
+    return (
+      <PreferenceOutput
+        key={index}
+        title={PreferenceItemtitles[index]}
+        selected={preference}
       />
     )
   })
-
+  const RangePreferenceArr = Object.values(preferences).slice(-4)
   const RangePreferences = RangePreferenceArr.map((preference, index) => {
-    return(
+    return (
       <RangePreference
-      key={index}
-      title={RangePreferencetitles[index]}
-      selected={preference}
+        key={index}
+        title={RangePreferencetitles[index]}
+        selected={preference}
       />
     )
   })
@@ -70,7 +64,6 @@ const Preferences = (props) => {
         {PreferenceOutputs}
 
         {RangePreferences}
-
 
         <button
           //onClick={updatePreferences} 

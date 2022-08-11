@@ -9,14 +9,21 @@ import Matches from "./components/Matches";
 import PreferenceItem from './components/PreferenceItem';
 import RangePreference from './components/RangePreference';
 import Preferences from './components/Preferences';
+import { useVisualMode } from './hooks/useVisualMode';
 
 
 const App = () => {
+  const navigation = useVisualMode("PREF");
   const [state, setState] = useState({});
   const [preferences, setPreferences] = useState({});
   const [matches, setMatches] = useState([])
   const [swipeHistory, setSwipeHistory] = useState([]);
-  
+  const [prefOption, setPrefOption] = useState({
+    gender: [],
+    drink: [],
+    exercise: [],
+    dating_goal: []
+  })
 
   // promise chain for setting initial states
   // Depency: Will likely depend on swiping state
@@ -27,21 +34,30 @@ const App = () => {
       axios.get('/api/users/1/messages'),
       axios.get('/api/users/1/likedBy')
     ])
-    .then((all) => {
-      setState({...state, 
-        users: all[0].data, 
-        user: all[1].data, 
-        messages: all[2].data, 
-        likedBy: all[3].data});
-    }) 
+      .then((all) => {
+        setState({
+          ...state,
+          users: all[0].data,
+          user: all[1].data,
+          messages: all[2].data,
+          likedBy: all[3].data
+        });
+      })
   }, []);
 
   useEffect(() => {
     axios.get('/api/users/1/preferences')
       .then((results) => {
-        setPreferences({...results.data});
+        setPreferences({ ...results.data });
       })
   }, []);
+
+  useEffect(() => {
+    axios.get("/api/users/1/preference-options")
+      .then((options) => {
+        setPrefOption({ ...options.data })
+      })
+  }, [])
 
   // Separating matches so it has dependency to update
   useEffect(() => {
@@ -53,8 +69,8 @@ const App = () => {
 
   // like user - takes in swiped on Ids and like value:boolean
   const swipeUser = (toId, like) => {
-    console.log("your swiped data in app.js:", {toId, like});
-    axios.post('/api/users/1/matchings', {toId, like})
+    console.log("your swiped data in app.js:", { toId, like });
+    axios.post('/api/users/1/matchings', { toId, like })
       .then((response) => {
         const freshSwipe = response.data[0];
         setSwipeHistory(prev => [...prev, freshSwipe])
@@ -74,10 +90,10 @@ const App = () => {
     };
     console.log('newPref', newPref);
     axios.post('/api/users/1/preferences', newPref)
-    .then((results) => {
-      setPreferences({...results.data})
-    })
-    .catch(error => console.log(error));
+      .then((results) => {
+        setPreferences({ ...results.data })
+      })
+      .catch(error => console.log(error));
   };
 
   // block user
@@ -110,7 +126,7 @@ const App = () => {
   return (
     <div className="App">
       <header> <Nav state={state} /></header>
-      <Routes>
+      {/* <Routes>
         <Route path='/' element={
           <UserCardContainer 
             users={state.users}
@@ -134,19 +150,20 @@ const App = () => {
           <LoginForm />
         } />
 
-        <Route path='/login' element={
-          <LoginForm />
-        } />
-
         <Route path='/matches' element={
           <Matches state={state} />
         } />
 
-      </Routes>
+      </Routes> */}
 
       {/* <PreferenceItem /> */}
       {/* <RangePreference /> */}
-      <Preferences preferences={preferences} setPreferences={setPreferences} />
+      {navigation.mode == 'PREF' && (
+        <Preferences
+          preferences={preferences}
+          setPreferences={setPreferences}
+          options={prefOption}
+          navigation={navigation} />)}
     </div>
   );
 }

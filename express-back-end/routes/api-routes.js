@@ -191,7 +191,7 @@ router.post("/users/:id/matchings", (req, res) => {
 });
 
 //get all the options for preferences
-router.get("/users/:id/preference", (req, res) => {
+router.get("/users/:id/preference-options", (req, res) => {
   const userId = req.params.id;
   const genderQuery = `SELECT * FROM genders`;
   const drinkQuery = `SELECT * FROM drinks`;
