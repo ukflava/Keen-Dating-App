@@ -6,6 +6,9 @@ import { Routes, Route, Link } from 'react-router-dom';
 import LoginForm from './components/login-form'
 import Nav from "./components/Nav";
 import Matches from "./components/Matches";
+import PreferenceItem from './components/PreferenceItem';
+import RangePreference from './components/RangePreference';
+import Preferences from './components/Preferences';
 
 
 const App = () => {
@@ -140,6 +143,10 @@ const App = () => {
         } />
 
       </Routes>
+
+      {/* <PreferenceItem /> */}
+      {/* <RangePreference /> */}
+      <Preferences preferences={preferences} setPreferences={setPreferences} />
     </div>
   );
 }
