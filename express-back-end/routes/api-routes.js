@@ -190,6 +190,32 @@ router.post("/users/:id/matchings", (req, res) => {
     .catch((error) => console.log("err:", error));
 });
 
+//get all the options for preferences
+router.get("/users/:id/preference", (req, res) => {
+  const userId = req.params.id;
+  const genderQuery = `SELECT * FROM genders`;
+  const drinkQuery = `SELECT * FROM drinks`;
+  const exerciseQuery = `SELECT * FROM exercises`;
+  const dating_goalQuery = `SELECT * FROM dating_goals`;
+
+  const promises =[
+    db.query(genderQuery),
+    db.query(drinkQuery),
+    db.query(exerciseQuery),
+    db.query(dating_goalQuery)
+  ];
+
+  Promise.all(promises)
+  .then(all => {
+    const gender = all[0].rows
+    const exercise = all[1].rows
+    const drink = all[2].rows
+    const dating_goal =all[3].rows
+    res.json({gender, exercise, drink, dating_goal})
+  })
+  .catch((error) => console.log("allpreferences err", error));
+})
+
 // get request to get users preferences
 router.get("/users/:id/preferences", (req, res) => {
   const userId = req.params.id;
