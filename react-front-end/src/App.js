@@ -126,7 +126,7 @@ const App = () => {
   return (
     <div className="App">
       <header> <Nav state={state} /></header>
-      {/* <Routes>
+      <Routes>
         <Route path='/' element={
           <UserCardContainer 
             users={state.users}
@@ -154,16 +154,16 @@ const App = () => {
           <Matches state={state} />
         } />
 
-      </Routes> */}
+      </Routes>
 
       {/* <PreferenceItem /> */}
       {/* <RangePreference /> */}
-      {navigation.mode == 'PREF' && (
+
         <Preferences
           preferences={preferences}
           setPreferences={setPreferences}
           options={prefOption}
-          navigation={navigation} />)}
+          />
     </div>
   );
 }
