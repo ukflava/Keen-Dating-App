@@ -196,10 +196,10 @@ router.get("/users/:id/preferences", (req, res) => {
   const query = `
     SELECT genders.value AS gender, location, drinks.value AS drink, exercises.value AS exercise, dating_goals.value AS dating_goal, min_age, max_age,  min_height_in_cm, max_height_in_cm
     FROM preferences
-    JOIN genders ON gender_id = genders.id
-    JOIN drinks ON drink_id = drinks.id
-    JOIN exercises ON exercise_id = exercises.id
-    JOIN dating_goals ON dating_goal_id = dating_goals.id
+    LEFT JOIN genders ON gender_id = genders.id
+    LEFT JOIN drinks ON drink_id = drinks.id
+    LEFT JOIN exercises ON exercise_id = exercises.id
+    LEFT JOIN dating_goals ON dating_goal_id = dating_goals.id
     WHERE user_id = $1;
   `
   return db.query(query, [userId])
@@ -233,6 +233,7 @@ router.get("/allpreferences", (req, res) => {
 router.post("/users/:id/preferences", (req, res) => {
   const userId = req.params.id;
   const preferences = req.body;
+  console.log("1231", preferences)
   const query =`
   UPDATE preferences
   SET min_age = $1,
