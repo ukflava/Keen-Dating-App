@@ -7,6 +7,7 @@ import LoginForm from './components/login-form'
 import Nav from "./components/Nav";
 import Matches from "./components/Matches";
 import Preferences from "./components/Preferences"
+import UserPreferencesDetails from './components/UserPreferencesDetails';
 
 
 const App = () => {
@@ -14,7 +15,12 @@ const App = () => {
   const [preferences, setPreferences] = useState({});
   const [matches, setMatches] = useState([])
   const [swipeHistory, setSwipeHistory] = useState([]);
-  
+  const [prefOption, setPrefOption] = useState({
+    genders: [],
+    drink: [],
+    exercise: [],
+    dating_goal: []
+  });
 
   // promise chain for setting initial states
   // Depency: Will likely depend on swiping state
@@ -25,19 +31,21 @@ const App = () => {
       axios.get('/api/users/1/messages'),
       axios.get('/api/users/1/likedBy')
     ])
-    .then((all) => {
-      setState({...state, 
-        users: all[0].data, 
-        user: all[1].data, 
-        messages: all[2].data, 
-        likedBy: all[3].data});
-    }) 
+      .then((all) => {
+        setState({
+          ...state,
+          users: all[0].data,
+          user: all[1].data,
+          messages: all[2].data,
+          likedBy: all[3].data
+        });
+      })
   }, []);
 
   useEffect(() => {
     axios.get('/api/users/1/preferences')
       .then((results) => {
-        setPreferences({...results.data});
+        setPreferences({ ...results.data });
       })
   }, []);
 
@@ -49,10 +57,17 @@ const App = () => {
       })
   }, [swipeHistory])
 
+  useEffect(() => {
+    axios.get('/api/allpreferences')
+      .then((prefOption) => {
+        setPrefOption({ ...prefOption.data })
+      })
+  }, [])
+
   // like user - takes in swiped on Ids and like value:boolean
   const swipeUser = (toId, like) => {
-    console.log("your swiped data in app.js:", {toId, like});
-    axios.post('/api/users/1/matchings', {toId, like})
+    console.log("your swiped data in app.js:", { toId, like });
+    axios.post('/api/users/1/matchings', { toId, like })
       .then((response) => {
         const freshSwipe = response.data[0];
         setSwipeHistory(prev => [...prev, freshSwipe])
@@ -62,21 +77,6 @@ const App = () => {
       });
   };
   // Makes post request when preferences update
-
-  // Update users preferences state
-  // need to pass preference key and new value as obj
-  const updatePreferences = () => {
-    const newPref = {
-      ...preferences,
-      location: 'testtt'
-    };
-    console.log('newPref', newPref);
-    axios.post('/api/users/1/preferences', newPref)
-    .then((results) => {
-      setPreferences({...results.data})
-    })
-    .catch(error => console.log(error));
-  };
 
   // block user
   const blockUser = (blockId) => {
@@ -110,7 +110,7 @@ const App = () => {
       <header> <Nav state={state} /></header>
       <Routes>
         <Route path='/' element={
-          <UserCardContainer 
+          <UserCardContainer
             users={state.users}
             preferences={preferences}
             likedBy={state.likedBy}
@@ -120,7 +120,7 @@ const App = () => {
         } />
 
         <Route path='/users/1' element={
-          <UserCardContainer 
+          <UserCardContainer
             user={state.user}
             profile={true}
             editMode={false}
@@ -141,9 +141,16 @@ const App = () => {
         } />
 
         <Route path='/preferences' element={
-          <Preferences 
-          preferences={preferences}
-          setPreferences={setPreferences}
+          <Preferences
+            preferences={preferences}
+            setPreferences={setPreferences}
+            prefOptions={prefOption}
+          />
+        } />
+
+        <Route path='/users/preferences' element={
+          <UserPreferencesDetails
+
           />
         } />
 
