@@ -209,6 +209,26 @@ router.get("/users/:id/preferences", (req, res) => {
     .catch((error) => console.log("err:", error));
 });
 
+router.get("/allpreferences", (req, res) => {
+  const promises = [
+    db.query(`SELECT * FROM genders`),
+    db.query(`SELECT * FROM exercises`),
+    db.query(`SELECT * FROM drinks`),
+    db.query(`SELECT * FROM dating_goals`)
+  ]
+
+  Promise.all(promises)
+  .then(all => {
+    console.log("all", all)
+    const genders = all[0].rows
+    const exercises = all[1].rows
+    const drinks = all[2].rows
+    const dating_goals = all[3].rows
+    res.json({genders, exercises, drinks, dating_goals})
+  })
+    .catch((error) => console.log("err:", error));
+});
+
 // Post request to update user's preferences in db
 router.post("/users/:id/preferences", (req, res) => {
   const userId = req.params.id;
