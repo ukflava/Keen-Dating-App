@@ -16,10 +16,10 @@ const PreferenceItem = (props) => {
             <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
           </svg>
         <p className="pt-10 pb-10 pl-2 text-xl font-medium">
-          Title 💜
+         hii💜
         </p>
       </div>
-        <PreferenceOption />
+        {/* <PreferenceOption /> */}
 
 
 
