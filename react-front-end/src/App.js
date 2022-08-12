@@ -70,14 +70,14 @@ const App = () => {
     if (loggedIn) {
       Promise.all([
       axios.get('/api/users/all'),
-      axios.get('/api/users/likedBy'),
-      axios.get('/api/matched-users')
+      axios.get('/api/users/likedBy')
+      // axios.get('/api/matched-users')
       ])
       .then((all) => {
         setState({...state, 
           users: all[0].data, 
           likedBy: all[1].data,
-          matchedUsers: all[2].data
+          // matchedUsers: all[2].data
         });
       }) 
     }
@@ -271,10 +271,16 @@ const App = () => {
                 <Preferences preferences={preferences} user={user} matches={matches} allMessages={allMessages} setAllMessages={setAllMessages} messageSent={messageSent} setMessageSent={setMessageSent}/>
               </>
         } />  
-{/* 
-        <Route path={`/userprofile/:name`} element={
+
+        {/* <Route path={`/userprofile/:id`} element={
+          !loggedIn 
+          ? <LoginForm setLoggedIn={setLoggedIn} /> 
+          : <>
+            <Nav state={state}user={user}  handleClickLogOut={handleClickLogOut} />
           <UserProfile
-          users={state.matchedUsers}/>
+          matchedUsers={matches}/>
+          </>
+        
 
         } />      */}
 

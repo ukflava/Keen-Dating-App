@@ -58,13 +58,49 @@ router.get("/users/all", (req, res) => {
 router.get("/matched-users", (req, res) => {
   const userId = req.session.user_id;
   const query = `
-  SELECT * FROM users
-  LEFT JOIN 
-  user_photos 
-  ON 
-  users.id = user_photos.user_id`
+  WITH matched_users AS (
+    SELECT
+    A.from_user_id,
+      A.to_user_id,
+      A.seen,
+      A.id AS seen_ref_id
+    FROM
+    matchings A, matchings B
+    WHERE 
+      A.from_user_id = B.to_user_id 
+      AND A.to_user_id = B.from_user_id 
+      AND A.like_value
+      AND B.like_value
+      AND A.from_user_id = $1
+    ),
+    photos as (
+      SELECT user_photos.user_id, array_agg(jsonb_build_object('id', user_photos.id, 'url', user_photos.url)) photos FROM user_photos GROUP BY user_photos.user_id
+    )
+    SELECT
+    users.id,
+      users.name,
+      users.bio,
+      users.education,
+      users.occupation,
+      users.age,
+      users.gender_id,
+      users.height_in_cm,
+      users.location,
+      drinks.value AS drink,
+      dating_goals.value AS dating_goal,
+      seen,
+      seen_ref_id,
+      photos
+    FROM 
+      matched_users
+    INNER JOIN users 
+      ON users.id = matched_users.to_user_id
+    LEFT JOIN photos ON users.id = photos.user_id
+    LEFT JOIN drinks ON users.drink_id = drinks.id
+    LEFT JOIN dating_goals ON users.dating_goal_id = dating_goals.id;
+  `
   return db
-    .query(query)
+    .query(query, [userId])
     .then(({ rows: users }) => {
       res.json(users);
     })
@@ -214,6 +250,15 @@ router.get("/users/matchings", (req, res) => {
     SELECT
     users.id,
       users.name,
+      users.bio,
+      users.education,
+      users.occupation,
+      users.age,
+      users.gender_id,
+      users.height_in_cm,
+      users.location,
+      drinks.value AS drink,
+      dating_goals.value AS dating_goal,
       seen,
       seen_ref_id,
       photos
@@ -221,7 +266,10 @@ router.get("/users/matchings", (req, res) => {
       matched_users
     INNER JOIN users 
       ON users.id = matched_users.to_user_id
-    LEFT JOIN photos ON users.id = photos.user_id;
+    LEFT JOIN photos ON users.id = photos.user_id
+    LEFT JOIN drinks ON users.drink_id = drinks.id
+    LEFT JOIN dating_goals ON users.dating_goal_id = dating_goals.id
+    ;
   `;
   return db
     .query(query, [userId])

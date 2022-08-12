@@ -20,7 +20,7 @@ const UserCardContainer = (props) => {
       props.swipeUser(id, false);
     }
   };
-
+  console.log("asdasdas", props.users)
   // Map over users and render profile cards
   const userCards = props.users?.map((user) => {
     return (

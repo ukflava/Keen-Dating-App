@@ -4,40 +4,44 @@ import UserCard from "./UserCard";
 const UserProfile = (props) => {
   const params = useParams();
 
-  if(!props.users) {
+  if(!props.matchedUsers) {
     return null;
   }
   
-  const user = props.users.find(user => {
-    return user.name === params.name
-    // user.id.toString() === params.id
+  const matchedUser = props.matchedUsers.find(user => {
+    console.log("hiiii", user)
+    return user.id.toString() === params.id
+    // user.id. === params.id
   })
-  console.log("sdfsdfsd", user)
+  console.log("sdfsdfsd", matchedUser)
   console.log("useParams", params)
-  if(!user){
+  if(!matchedUser){
     return null
   }
 
   return (
+    <section className="user-card-container w-full place-content-center">
     <div className="keen-tinder-card w-full rounded-xl drop-shadow-2xl">
+      {}
       <UserCard
-        key={user.id}
-        id={user.id}
-        name={user.name}
-        age={user.age}
-        bio={user.bio}
-        education={user.education}
-        occupation={user.occupation}
-        location={user.location}
-        goal={user.goal}
-        drinks={user.drinks}
-        exercises={user.exercises}
-        gender={user.gender}
-        height={user.height_in_cm}
-        isActive={user.is_active}
-        photos={user.url}
+        key={matchedUser.id}
+        id={matchedUser.id}
+        name={matchedUser.name}
+        age={matchedUser.age}
+        bio={matchedUser.bio}
+        education={matchedUser.education}
+        occupation={matchedUser.occupation}
+        location={matchedUser.location}
+        goal={matchedUser.dating_goal}
+        drinks={matchedUser.drink}
+        exercises={matchedUser.exercises}
+        gender={matchedUser.value}
+        height={matchedUser.height_in_cm}
+        isActive={matchedUser.is_active}
+        photos={matchedUser.url}
       />
     </div>
+    </section>
   )
 
 }

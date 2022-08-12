@@ -5,6 +5,7 @@ import ImageReplacer from './ImageReplacer';
 import SelectAspects from './SelectAspects';
 
 const UserCard = (props) => {
+  console.log("UserCard----", props.name)
   const [pager, setPager] = useState(0);
   const [profileHistory, setProfileHistory] = useState({...props.currentProfile});
   const [newProfile, setNewProfile] = useState({...props.currentProfile});
@@ -130,7 +131,8 @@ const UserCard = (props) => {
     <article className="user-profile flex flex-col user-card w-full" id={props.id}>
       {props.profile ? profileView : <></>}
       <div className="user-photos-container rounded-t-xl h-3/4">
-        { (typeof props.photos === 'string') ? <img src={props.photos} alt="" className='h-[600px]'/>  :<img src={props.photos[pager].url} alt="" className='h-[600px]'/> }
+        {/* { (typeof props.photos === 'string') ? <img src={props.photos} alt="" className='h-[600px]'/>  :<img src={props.photos[pager].url} alt="" className='h-[600px]'/> } */}
+        <img src={props.photos[pager].url} alt="" className='h-[600px]'/>
         
       </div>
       <div className="h-3/4 flex flex-row justify-between absolute left-0 bg-transparent hover:bg-white/25">

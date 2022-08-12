@@ -2,7 +2,7 @@ INSERT INTO users (name, email, password, bio, age, gender_id, location, height_
  occupation, drink_id, exercise_id, dating_goal_id, is_active)
 VALUES
   ('Brennan Padilla','ectus.quis@icloud.com', '1111', 'I have never seen a straight banana.', 25, 1, 'Vancouver', 180 , 'high school', 'student', 3, 3, 2, true),
-  ('Belle Hendrick','quis@hotmail.couk', '1111', 'lorem bio', 30, 0, 'Toronto', 155 , 'University', 'Barista', 1, 2, 1, true),
+  ('Belle Hendrick','quis@hotmail.couk', '1111', 'lorem bio', 30, 2, 'Toronto', 155 , 'University', 'Barista', 1, 2, 1, true),
   ('dfasdf Hendrick','fddfsdf@hotmail.couk', '1111', 'lorem bio', 22, 1, 'Vancouver', 145 , 'high school', 'student', 1, 2, 1, true),
   ('new person','new@hotmail.couk', '1111', 'lorem bio', 50, 1, 'Vancouver', 199 , 'high school', 'Plumber', 1, 2, 1, true),
   ('New User 5','fddfsdf@hotmail.couk', '1111', 'lorem bio', 22, 1, 'Vancouver', 145 , 'high school', 'student', 1, 2, 1, true);
@@ -51,10 +51,15 @@ INSERT INTO matchings (from_user_id, to_user_id, like_value, seen, matched_date)
 VALUES 
 (1, 2, true, true, CURRENT_TIMESTAMP),
 (2, 1, true, true, CURRENT_TIMESTAMP),
+(2, 4, true, true, CURRENT_TIMESTAMP),
+(4, 2, true, true, CURRENT_TIMESTAMP),
 (1, 4, true, true, CURRENT_TIMESTAMP),
+(5, 4, true, true, CURRENT_TIMESTAMP),
+(4, 5, true, true, CURRENT_TIMESTAMP),
 (4, 1, true, true, CURRENT_TIMESTAMP),
 (1, 5, true, true, CURRENT_TIMESTAMP),
 (5, 1, true, true, CURRENT_TIMESTAMP),
+(3, 4, true, true, CURRENT_TIMESTAMP),
 
 (3, 1, true, false, CURRENT_TIMESTAMP);
 

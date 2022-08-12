@@ -1,13 +1,27 @@
 import {PhoneIcon, VideoCameraIcon, DotsCircleHorizontalIcon} from '@heroicons/react/outline';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const MatchHeader = (props) => {
-  const name = props.selected.name
+
+  const id = props.selected.id
+  console.log("selectedfsdfsdf", props)
+
+  const profileClickHandler = () => {
+    const showProfile = {
+      ...props.selected,
+      status: true
+    };
+    props.setSeeProfile({...showProfile})
+  }
+
+
   return (
     <div className='bg-white flex flex-row border-b border-gray-300 items-center justify-between px-3'>
-      <Link 
-      to={`/userprofile`}>
+      {/* <Link 
+      to={`/userprofile`}> */}
       <div 
+      onClick={profileClickHandler}
       className="bg-white display-match-name font-semibold flex items-center">
         {props.selected
           ? <>
@@ -17,7 +31,7 @@ const MatchHeader = (props) => {
           : "Loading"
         }
       </div> 
-      </Link>
+      {/* </Link> */}
       <div className="bg-white match-actions flex">
         <div className="voice-call mx-1"><PhoneIcon className='bg-white h-5 w-5 text-gray-800'/></div>
         <div className=" video-call mx-1"><VideoCameraIcon className='bg-white h-5 w-5 text-gray-800' /></div>
