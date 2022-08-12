@@ -224,7 +224,7 @@ const App = () => {
               </>
         } />
 
-        <Route path='/userprofile' element={
+        {/* <Route path='/userprofile' element={
           !loggedIn 
             ? <LoginForm setLoggedIn={setLoggedIn} /> 
             : <>
@@ -237,7 +237,7 @@ const App = () => {
                   matchedProfile={true}
                 />
               </>
-        } />
+        } /> */}
 
         <Route path='/login' element={
           !loggedIn 
@@ -272,7 +272,7 @@ const App = () => {
               </>
         } />  
 
-        {/* <Route path={`/userprofile/:id`} element={
+        <Route path={`/userprofile/:id`} element={
           !loggedIn 
           ? <LoginForm setLoggedIn={setLoggedIn} /> 
           : <>
@@ -282,7 +282,7 @@ const App = () => {
           </>
         
 
-        } />      */}
+        } />     
 
       </Routes>
     </div>

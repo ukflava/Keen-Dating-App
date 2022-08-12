@@ -11,6 +11,8 @@ const UserCard = (props) => {
   const [newProfile, setNewProfile] = useState({...props.currentProfile});
   const [editView, setEditView] = useState(props.editMode);
 
+  console.log("UserCard Pros: ", props)
+
   // Helper function to capitalize first letter of user-more-info content
   const formatText = (text) => {
     const newText = text?.toLowerCase()?.split('')?.map((letter, index) => {
@@ -131,7 +133,7 @@ const UserCard = (props) => {
     <article className="user-profile flex flex-col user-card w-full" id={props.id}>
       {props.profile ? profileView : <></>}
       <div className="user-photos-container rounded-t-xl h-3/4">
-        {/* { (typeof props.photos === 'string') ? <img src={props.photos} alt="" className='h-[600px]'/>  :<img src={props.photos[pager].url} alt="" className='h-[600px]'/> } */}
+        {/* { (typeof props.photos === 'string') ? <img src={props.photos.url} alt="" className='h-[600px]'/>  :<img src={props.photos[pager].url} alt="" className='h-[600px]'/> } */}
         <img src={props.photos[pager].url} alt="" className='h-[600px]'/>
         
       </div>

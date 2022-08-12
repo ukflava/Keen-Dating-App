@@ -13,7 +13,7 @@ const UserProfile = (props) => {
     return user.id.toString() === params.id
     // user.id. === params.id
   })
-  console.log("sdfsdfsd", matchedUser)
+  console.log("matchedUser", matchedUser)
   console.log("useParams", params)
   if(!matchedUser){
     return null
@@ -38,7 +38,7 @@ const UserProfile = (props) => {
         gender={matchedUser.value}
         height={matchedUser.height_in_cm}
         isActive={matchedUser.is_active}
-        photos={matchedUser.url}
+        photos={matchedUser.photos}
       />
     </div>
     </section>
