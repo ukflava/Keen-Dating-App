@@ -1,9 +1,14 @@
 import {PhoneIcon, VideoCameraIcon, DotsCircleHorizontalIcon} from '@heroicons/react/outline';
+import { Link } from 'react-router-dom';
 
 const MatchHeader = (props) => {
+  const name = props.selected.name
   return (
     <div className='bg-white flex flex-row border-b border-gray-300 items-center justify-between px-3'>
-      <div className="bg-white display-match-name font-semibold flex items-center">
+      <Link 
+      to={`/userprofile`}>
+      <div 
+      className="bg-white display-match-name font-semibold flex items-center">
         {props.selected
           ? <>
               <img className='bg-white w-6 h-6 rounded-full' src={props.selected?.photos[0].url} alt="" />
@@ -11,7 +16,8 @@ const MatchHeader = (props) => {
             </>
           : "Loading"
         }
-      </div>
+      </div> 
+      </Link>
       <div className="bg-white match-actions flex">
         <div className="voice-call mx-1"><PhoneIcon className='bg-white h-5 w-5 text-gray-800'/></div>
         <div className=" video-call mx-1"><VideoCameraIcon className='bg-white h-5 w-5 text-gray-800' /></div>

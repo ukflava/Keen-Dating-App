@@ -5,3 +5,4 @@ export const SIGN_UP = '/sign-up';
 export const PROFILE = '/profile';
 export const PREF = '/preferences';
 export const MATCHES = '/matches';
+export const USERPROFILE = '/userprofile';

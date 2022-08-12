@@ -55,6 +55,23 @@ router.get("/users/all", (req, res) => {
     .catch((error) => console.log("err:", error));
 });
 
+router.get("/matched-users", (req, res) => {
+  const userId = req.session.user_id;
+  const query = `
+  SELECT * FROM users
+  LEFT JOIN 
+  user_photos 
+  ON 
+  users.id = user_photos.user_id`
+  return db
+    .query(query)
+    .then(({ rows: users }) => {
+      res.json(users);
+    })
+    .catch((error) => console.log("err:", error));
+
+})
+
 // Get request to get your user object
 router.get("/users", (req, res) => {
   const userId = req.session.user_id;
@@ -95,7 +112,7 @@ router.post('/users/messages/new', (req, res) => {
     RETURNING *;
   `;
   return db.query(query, [userId, msgData.to_user_id, msgData.message, msgData.message_seen])
-    .then(({rows: newMsgData}) => {
+    .then(({ rows: newMsgData }) => {
       res.json(newMsgData);
     })
     .catch((error) => console.log('error', error));
@@ -117,7 +134,7 @@ router.post('/users/messages/seen', (req, res) => {
   RETURNING *;
   `;
   return db.query(query, [msgData.message_seen, msgData.id, msgData.to_user_id, msgData.from_user_id])
-    .then(({rows: updatedMsgData}) => {
+    .then(({ rows: updatedMsgData }) => {
       res.json(updatedMsgData);
     })
     .catch((error) => console.log('error', error));
@@ -247,7 +264,7 @@ router.post('/users/matchings/update', (req, res) => {
   RETURNING *;
   `;
   return db.query(query, [seen, tableId, matchId])
-    .then(({rows: matchSeen}) => {
+    .then(({ rows: matchSeen }) => {
       res.json(matchSeen);
     })
     .catch((error) => console.log('err', error));
@@ -271,7 +288,7 @@ router.get("/users/preferences", (req, res) => {
 router.post("/users/preferences", (req, res) => {
   const userId = req.session.user_id;
   const preferences = req.body;
-  const query =`
+  const query = `
   UPDATE preferences
   SET min_age = $1,
       max_age = $2,
@@ -287,7 +304,7 @@ router.post("/users/preferences", (req, res) => {
   `;
   return db
     .query(query, [preferences.min_age, preferences.max_age, preferences.location, preferences.min_height_in_cm, preferences.max_height_in_cm, preferences.gender_id, preferences.drink_id, preferences.exercise_id, preferences.dating_goal_id, userId])
-    .then(({rows: userPreferences}) => {
+    .then(({ rows: userPreferences }) => {
       res.json(userPreferences[0]);
     })
     .catch(error => console.log("error:", error))
@@ -308,7 +325,7 @@ router.post('/users/edit', (req, res) => {
     occupation = $4
   WHERE users.id = $5;
   `;
-    db.query(query, [newValue.bio, newValue.location, newValue.education, newValue.occupation, userId])
+  db.query(query, [newValue.bio, newValue.location, newValue.education, newValue.occupation, userId])
     .then(() => {
       for (const newPhoto of newPhotoUrl) {
         const photoId = newPhoto.id;
@@ -336,7 +353,7 @@ router.post('/users/edit', (req, res) => {
           WHERE users.id = $1 AND user_photos.is_profile is TRUE;
       `;
       return db.query(getUser, [userId])
-        .then(({rows: user}) => {
+        .then(({ rows: user }) => {
           res.json(user);
         })
         .catch((error) => console.log('error', error));

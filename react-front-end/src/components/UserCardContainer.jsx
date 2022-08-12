@@ -1,5 +1,6 @@
 import UserCard from "./UserCard";
 import NoUsersLeft from './NoUsersLeft';
+import { useParams } from "react-router-dom";
 
 // Hook credit to @3DJakob on github 
 import TinderCard from 'react-tinder-card';
@@ -75,6 +76,36 @@ const UserCardContainer = (props) => {
       </section>
     );
   };
+
+  if(!props.profile && !props.editMode && props.matchedProfile){
+    return (
+      <section className="user-card-container w-full place-content-center">
+        <div className="keen-tinder-card w-full rounded-xl drop-shadow-2xl">
+          <UserCard 
+            key={props.user.id}
+            id={props.user.id}
+            name={props.user.name}
+            age={props.user.age}
+            bio={props.user.bio}
+            education={props.user.education}
+            occupation={props.user.occupation}
+            location={props.user.location}
+            goal={props.user.goal}
+            drinks={props.user.drinks}
+            exercises={props.user.exercises}
+            gender={props.user.gender}
+            height={props.user.height_in_cm}
+            isActive={props.user.is_active}
+            photos={props.user.photos}
+            // profile={props.profile}
+            // editMode={props.editMode}
+            // updateProfile={props.updateProfile}
+            // currentProfile={props.user}
+          />
+        </div>
+      </section>
+    )
+  }
   
   console.log('usercards', userCards);
   // Render other users

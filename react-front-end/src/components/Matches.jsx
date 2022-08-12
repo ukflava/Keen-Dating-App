@@ -6,6 +6,7 @@ import MatchBubble from './MatchBubble';
 import {useState} from 'react';
 // state={state} matches={matches} allMessages={allMessages} setAllMessages={setAllMessages}
 export default function Matches(props) {
+  console.log("Matches props", props)
   const [selected, setSelected] = useState(null);
 
   // Click handler to set current view/chat 

@@ -7,6 +7,9 @@ import LoginForm from './components/login-form'
 import Nav from "./components/Nav";
 import Matches from "./components/Matches";
 import Preferences from './components/Preferences';
+import { propTypes } from 'react-tinder-card';
+import UserCard from './components/UserCard';
+import UserProfile from './components/UserProfile';
 
 // initial state
 const reset = {
@@ -67,12 +70,15 @@ const App = () => {
     if (loggedIn) {
       Promise.all([
       axios.get('/api/users/all'),
-      axios.get('/api/users/likedBy')
+      axios.get('/api/users/likedBy'),
+      axios.get('/api/matched-users')
       ])
       .then((all) => {
         setState({...state, 
           users: all[0].data, 
-          likedBy: all[1].data});
+          likedBy: all[1].data,
+          matchedUsers: all[2].data
+        });
       }) 
     }
     // Discusss if we need cleanUp for Effect Hook
@@ -218,6 +224,21 @@ const App = () => {
               </>
         } />
 
+        <Route path='/userprofile' element={
+          !loggedIn 
+            ? <LoginForm setLoggedIn={setLoggedIn} /> 
+            : <>
+                <Nav state={state} user={user} handleClickLogOut={handleClickLogOut}/>
+                <UserCardContainer 
+                  user={matches}
+                  profile={false}
+                  editMode={false}
+                  updateProfile={updateProfile}
+                  matchedProfile={true}
+                />
+              </>
+        } />
+
         <Route path='/login' element={
           !loggedIn 
             ? <LoginForm setLoggedIn={setLoggedIn} /> 
@@ -249,7 +270,13 @@ const App = () => {
                 <Nav state={state}user={user}  handleClickLogOut={handleClickLogOut} />
                 <Preferences preferences={preferences} user={user} matches={matches} allMessages={allMessages} setAllMessages={setAllMessages} messageSent={messageSent} setMessageSent={setMessageSent}/>
               </>
-        } />       
+        } />  
+{/* 
+        <Route path={`/userprofile/:name`} element={
+          <UserProfile
+          users={state.matchedUsers}/>
+
+        } />      */}
 
       </Routes>
     </div>
