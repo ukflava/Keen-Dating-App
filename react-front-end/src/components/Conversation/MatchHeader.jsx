@@ -3,25 +3,13 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const MatchHeader = (props) => {
-
   const id = props.selected.id
-  console.log("selectedfsdfsdf", props)
-
-  // const profileClickHandler = () => {
-  //   const showProfile = {
-  //     ...props.selected,
-  //     status: true
-  //   };
-  //   props.setSeeProfile({...showProfile})
-  // }
-
 
   return (
     <div className='bg-white flex flex-row border-b border-gray-300 items-center justify-between px-3'>
       <Link 
       to={`/userprofile/${id}`}>
       <div 
-      // onClick={profileClickHandler}
       className="bg-white display-match-name font-semibold flex items-center">
         {props.selected
           ? <>
