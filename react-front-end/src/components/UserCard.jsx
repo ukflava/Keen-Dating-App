@@ -133,7 +133,6 @@ const UserCard = (props) => {
     <article className="user-profile flex flex-col user-card w-full" id={props.id}>
       {props.profile ? profileView : <></>}
       <div className="user-photos-container rounded-t-xl h-3/4">
-        {/* { (typeof props.photos === 'string') ? <img src={props.photos.url} alt="" className='h-[600px]'/>  :<img src={props.photos[pager].url} alt="" className='h-[600px]'/> } */}
         <img src={props.photos[pager].url} alt="" className='h-[600px]'/>
         
       </div>

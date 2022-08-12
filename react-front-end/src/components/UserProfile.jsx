@@ -9,12 +9,9 @@ const UserProfile = (props) => {
   }
   
   const matchedUser = props.matchedUsers.find(user => {
-    console.log("hiiii", user)
     return user.id.toString() === params.id
-    // user.id. === params.id
   })
-  console.log("matchedUser", matchedUser)
-  console.log("useParams", params)
+
   if(!matchedUser){
     return null
   }
@@ -43,7 +40,6 @@ const UserProfile = (props) => {
     </div>
     </section>
   )
-
 }
 
 export default UserProfile;
