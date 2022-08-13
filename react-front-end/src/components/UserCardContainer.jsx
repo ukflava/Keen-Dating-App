@@ -33,11 +33,13 @@ const UserCardContainer = (props) => {
 
  let filteredUsers = props.users?.filter( a => {
     if (  
-      // a.gender === pref.gender_id  &&
-      // a.drinks === pref.drinks_id &&
-      a.location.includes(pref.location) 
-      // a.height >= pref.min_height &&
-      // a.height <= pref.max_height
+      // a.gender_id === pref.gender_id  &&
+      // a.drinks_id === pref.drinks_id &&
+      a.location.includes(pref.location) &&
+      a.age >= pref.min_age &&
+      a.age <= pref.max_age &&
+      a.height_in_cm >= pref.min_height_ &&
+      a.height_in_cm <= pref.max_height
       ) {
         return true
       }
