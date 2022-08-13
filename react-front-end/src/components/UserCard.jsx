@@ -195,10 +195,10 @@ const UserCard = (props) => {
       <div className="bg-white user-photos-container rounded-t-xl h-3/4">
         <img src={props.profile ? newProfile.photos[pager].url : props.photos[pager].url} alt="" className='h-[600px]'/>
       </div>
-      <div className="h-3/4 flex flex-row justify-between fixed left-0 bg-transparent hover:bg-white/25">
+      <div className="h-full flex flex-row justify-between fixed left-0 bg-transparent hover:bg-white/25">
         <button onClick={() => handlePager('prev')}><ChevronLeftIcon className='h-5 w-5 bg-transparent text-white'/></button>
       </div>
-      <div className="h-3/4 flex flex-row justify-between fixed right-0 bg-transparent hover:bg-white/25">
+      <div className="h-full flex flex-row justify-between fixed right-0 bg-transparent hover:bg-white/25">
         <button onClick={() => handlePager('next')}><ChevronRightIcon className='h-5 w-5 bg-transparent text-white'/></button>
       </div>
 
