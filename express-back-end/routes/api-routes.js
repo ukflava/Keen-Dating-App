@@ -19,7 +19,7 @@ router.get("/users/all", (req, res) => {
     SELECT user_photos.user_id, array_agg(jsonb_build_object('id', user_photos.id, 'url', user_photos.url)) photos FROM user_photos GROUP BY user_photos.user_id
   )
   SELECT 
-    users.id, users.name, users.email, users.age, users.bio, users.gender_id, genders.value AS gender, users.location, users.height_in_cm, users.education, users.occupation, users.drink_id, drinks.value AS drinks, exercises.value AS exercises, dating_goals.value as goal, users.is_active, photos
+    users.id, users.name, users.email, users.age, users.bio, users.gender_id, genders.value AS gender, users.location, users.height_in_cm, users.education, users.occupation, drinks.value AS drinks, exercises.value AS exercises, dating_goals.value as goal, users.is_active, photos, users.drink_id, users.exercise_id, users.dating_goal_id
   FROM 
     users 
   LEFT JOIN 
@@ -283,7 +283,7 @@ router.get("/preferences", (req, res) => {
 
   Promise.all(promises)
   .then(all => {
-    // console.log("all", all)
+    console.log("all", all)
     const genders = all[0].rows
     const exercises = all[1].rows
     const drinks = all[2].rows
