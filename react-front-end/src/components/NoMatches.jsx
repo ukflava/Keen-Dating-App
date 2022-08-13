@@ -7,7 +7,7 @@ const NoMatches = () => {
         Sorry, you have no matches yet. <br/>
         When you match with other users, they will appear here where you can send them a message.
       </div>
-      <button className='bg-fuchsia-800 text-white font-semibold rounded-md px-2 py-1 my-1'><Link to='/' className='bg-fuchsia-800'>Start Liking</Link></button>
+      <button className='bg-fuchsia-800 text-white font-semibold rounded-md py-1 my-1'><Link to='/' className='bg-fuchsia-800'>Start Liking</Link></button>
     </div>
   )
 }
