@@ -13,6 +13,15 @@ export default function Matches(props) {
     setSelected(matchObj);
   };
 
+  if(props.matches.length === 0) {
+    return (
+      <div>
+      hi
+    </div>
+    )
+    
+  }
+
   // map over list of confirmed matches and display bubbles
   const match = props.matches?.map(match => {
     return (
@@ -32,10 +41,6 @@ export default function Matches(props) {
       />
     );
   });
-
-
-  
-
   return (
     <div className='outer-most-matches-div grid'>
       <Conversation selected={selected} user={props.user} allMessages={props.allMessages} setAllMessages={props.setAllMessages} messageSent={props.messageSent} setMessageSent={props.setMessageSent}/>
