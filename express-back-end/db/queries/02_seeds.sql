@@ -82,3 +82,26 @@ VALUES
 (2,2,2,2,2),
 (3,3,3,3,3),
 (4,1,1,1,1);
+
+
+insert into users (name, email, password, bio, age, gender_id, location, height_in_cm, education, occupation, drink_id, exercise_id, dating_goal_id, is_active) values ('Papageno Harcase', 'pharcase0@npr.org', '1ldVqX30lib', 'scale innovative users', 33, 1, 'Zmijavci', 180, 'University of the Philippines Baguio', 'Analyst Programmer', 1, 2, 3, true);
+insert into users (name, email, password, bio, age, gender_id, location, height_in_cm, education, occupation, drink_id, exercise_id, dating_goal_id, is_active) values ('Cynde Ketcher', 'cketcher1@latimes.com', '7FyWZ7DsS', 'cultivate global functionalities', 72, 2, 'Shuangcheng', 173, 'The Art Institute of Boston', 'Operator', 3, 1, 2, false);
+insert into users (name, email, password, bio, age, gender_id, location, height_in_cm, education, occupation, drink_id, exercise_id, dating_goal_id, is_active) values ('Isa Linneman', 'ilinneman2@harvard.edu', 'LtZMDpmr', 'implement 24/7 schemas', 24, 2, 'Shymkent', 183, 'China Academy of Art', 'Analog Circuit Design manager', 2, 2, 2, true);
+insert into users (name, email, password, bio, age, gender_id, location, height_in_cm, education, occupation, drink_id, exercise_id, dating_goal_id, is_active) values ('Taite Bosse', 'tbosse3@ucsd.edu', 'fVOnwP', 'integrate enterprise solutions', 67, 2, 'Drohobych', 158, 'Sterlitamak State Pedagogical Institute', 'Mechanical Systems Engineer', 1, 3, 3, false);
+insert into users (name, email, password, bio, age, gender_id, location, height_in_cm, education, occupation, drink_id, exercise_id, dating_goal_id, is_active) values ('Lisbeth Harmar', 'lharmar4@cbslocal.com', 'fRa0tX', 'synergize e-business metrics', 65, 2, 'Turku', 145, 'Manhattan School of Music', 'Actuary', 3, 3, 1, false);
+insert into users (name, email, password, bio, age, gender_id, location, height_in_cm, education, occupation, drink_id, exercise_id, dating_goal_id, is_active) values ('Orazio Blanch', 'oblanch5@sohu.com', '7xV4TonTnPBK', 'matrix best-of-breed models', 41, 1, 'Alenquer', 158, 'Seisen University', 'Business Systems Development Analyst', 1, 3, 1, true);
+insert into users (name, email, password, bio, age, gender_id, location, height_in_cm, education, occupation, drink_id, exercise_id, dating_goal_id, is_active) values ('Gerhardine Bugdall', 'gbugdall6@opensource.org', '3YyBsZd', 'monetize scalable channels', 46, 1, 'Mazār-e Sharīf', 159, 'Southern Polytechnic State Univerisity', 'Senior Cost Accountant', 2, 2, 1, true);
+insert into users (name, email, password, bio, age, gender_id, location, height_in_cm, education, occupation, drink_id, exercise_id, dating_goal_id, is_active) values ('Garrett Readings', 'greadings7@nba.com', 'lbDs8Dla8', 'syndicate cross-platform convergence', 62, 2, 'Tucuruí', 140, 'Universidad Intercontinental', 'Business Systems Development Analyst', 2, 2, 3, true);
+insert into users (name, email, password, bio, age, gender_id, location, height_in_cm, education, occupation, drink_id, exercise_id, dating_goal_id, is_active) values ('Bing Spencers', 'bspencers8@prweb.com', 'lyr626LN', 'visualize cross-media vortals', 49, 2, 'Lesnyye Polyany', 197, 'Katsina University', 'VP Accounting', 2, 2, 3, true);
+insert into users (name, email, password, bio, age, gender_id, location, height_in_cm, education, occupation, drink_id, exercise_id, dating_goal_id, is_active) values ('Irwin Stott', 'istott9@yellowbook.com', 'zRWi0EykTU', 'incentivize web-enabled functionalities', 68, 2, 'Qingyang', 153, 'Comenius University in Bratislava', 'Recruiter', 2, 3, 3, false);
+
+insert into user_photos (user_id, url, is_profile) values (6, 'http://dummyimage.com/231x196.png/dddddd/000000', true);
+insert into user_photos (user_id, url, is_profile) values (7, 'http://dummyimage.com/181x144.png/ff4444/ffffff', false);
+insert into user_photos (user_id, url, is_profile) values (8, 'http://dummyimage.com/158x130.png/ff4444/ffffff', true);
+insert into user_photos (user_id, url, is_profile) values (9, 'http://dummyimage.com/109x153.png/5fa2dd/ffffff', false);
+insert into user_photos (user_id, url, is_profile) values (10, 'http://dummyimage.com/171x107.png/cc0000/ffffff', true);
+insert into user_photos (user_id, url, is_profile) values (11, 'http://dummyimage.com/130x156.png/5fa2dd/ffffff', false);
+insert into user_photos (user_id, url, is_profile) values (12, 'http://dummyimage.com/220x250.png/cc0000/ffffff', true);
+insert into user_photos (user_id, url, is_profile) values (13, 'http://dummyimage.com/224x152.png/5fa2dd/ffffff', false);
+insert into user_photos (user_id, url, is_profile) values (14, 'http://dummyimage.com/152x126.png/5fa2dd/ffffff', false);
+insert into user_photos (user_id, url, is_profile) values (15, 'http://dummyimage.com/152x175.png/dddddd/000000', false);

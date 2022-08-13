@@ -27,18 +27,25 @@ const UserCardContainer = (props) => {
 
   
   
-  // const pref = props.user.preferences
+  const pref = props.preferences
+  console.log("prefd", pref)
+  console.log("users from mainb", props.users)
 
-  // const filteredUsers = props.users?.filter( a => {
-    
-  //     a.gender === pref.gender_id  &&
-  //     a.drinks === pref.drinks_id &&
-  //     a.location.includes(pref.location) && 
-  //     a.height >= pref.min_height &&
-  //     a.height <= pref.max_height
+ let filteredUsers = props.users?.filter( a => {
+    if (  
+      // a.gender === pref.gender_id  &&
+      // a.drinks === pref.drinks_id &&
+      a.location.includes(pref.location) 
+      // a.height >= pref.min_height &&
+      // a.height <= pref.max_height
+      ) {
+        return true
+      }
+      else return false
      
 
-  // })
+  })
+  console.log("filtered???", filteredUsers)
 
 //shuffle 
 
