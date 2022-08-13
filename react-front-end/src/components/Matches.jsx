@@ -2,8 +2,9 @@ import React from "react";
 import Conversation from "./Conversation";
 import MatchesListHeader from './MatchesListHeader';
 import MatchBubble from './MatchBubble';
+import NoMatches from "./NoMatches";
 
-import {useState} from 'react';
+import { useState } from 'react';
 // state={state} matches={matches} allMessages={allMessages} setAllMessages={setAllMessages}
 export default function Matches(props) {
   const [selected, setSelected] = useState(null);
@@ -13,10 +14,18 @@ export default function Matches(props) {
     setSelected(matchObj);
   };
 
+  if (props.matches.length === 0) {
+    return (
+      <section className="user-card-container w-full place-content-center">
+        <NoMatches />
+      </section>
+    )
+  }
+
   // map over list of confirmed matches and display bubbles
   const match = props.matches?.map(match => {
     return (
-      <MatchBubble 
+      <MatchBubble
         key={match.id}
         match={match}
         matchName={match.name}
@@ -27,21 +36,17 @@ export default function Matches(props) {
         messageSent={props.messageSent}
         setMessageSent={props.setMessageSent}
         selected={props.selected}
-        seenUpdate={props.seenUpdate} 
+        seenUpdate={props.seenUpdate}
         setSeenUpdate={props.setSeenUpdate}
       />
     );
   });
-
-
-  
-
   return (
     <div className='outer-most-matches-div grid'>
-      <Conversation selected={selected} user={props.user} allMessages={props.allMessages} setAllMessages={props.setAllMessages} messageSent={props.messageSent} setMessageSent={props.setMessageSent}/>
+      <Conversation selected={selected} user={props.user} allMessages={props.allMessages} setAllMessages={props.setAllMessages} messageSent={props.messageSent} setMessageSent={props.setMessageSent} />
       <MatchesListHeader user={props.user} />
       <div className="bg-white matches-bubble-list flex flex-col border-l border-t border-b border-gray-300 py-1">
-        {match? match : "loading"}
+        {match ? match : "loading"}
       </div>
     </div>
   );
