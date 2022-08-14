@@ -38,7 +38,7 @@ VALUES
 (5, 'https://i.pinimg.com/originals/96/5d/3a/965d3a0dc2a9fd76160bbadbb4325671.jpg', true),
 (5, 'https://i.pinimg.com/564x/3d/19/e8/3d19e86efc11cca669bb42e5f58cbbd3.jpg', false),
 (5, 'https://i.pinimg.com/originals/d4/8c/04/d48c0406791131e77c1a27b0d881401a.jpg', false),
-(6, 'https://akns-images.eonline.com/eol_images/Entire_Site/2020730/rs_1200x1200-200830194033-1200-doja-cat-winner-mtv-vma-2020-ls.jpg?fit=around%7C1200:1200&output-quality=90&crop=1200:1200;center,top.jpg', false),
+(6, 'https://akns-images.eonline.com/eol_images/Entire_Site/2020730/rs_1200x1200-200830194033-1200-doja-cat-winner-mtv-vma-2020-ls.jpg', true),
 (7, 'https://media1.popsugar-assets.com/files/thumbor/_747zNxDa0FZDlH4JHhEmolTAdI/fit-in/1024x1024/filters:format_auto-!!-:strip_icc-!!-/2016/07/21/877/n/1922153/e381dec8c6bc66d9_7Rabbani_and_Solimene_Photography/i/2016.jpg', true),
 (7, 'https://media.glamour.com/photos/5cdb17640d3645f96221dfd7/1:1/w_2489,h_2489,c_limit/GettyImages-1149101453.jpg', false),
 (7, 'https://i0.web.de/image/684/36752684,pd=2/selena-gomez.jpg', false),
