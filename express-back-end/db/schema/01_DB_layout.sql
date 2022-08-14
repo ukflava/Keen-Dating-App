@@ -88,7 +88,7 @@ CREATE TABLE preferences (
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   min_age INTEGER DEFAULT 18,
   max_age INTEGER DEFAULT 80,
-  location TEXT DEFAULT 'Earth',
+  location TEXT DEFAULT 'Vancouver',
   min_height_in_cm INTEGER DEFAULT 150,
   max_height_in_cm INTEGER DEFAULT 275,
   gender_id INTEGER REFERENCES genders(id) ON DELETE CASCADE DEFAULT 1,
