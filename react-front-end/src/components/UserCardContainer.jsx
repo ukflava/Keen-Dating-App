@@ -1,3 +1,5 @@
+// import { useState, useEffect } from 'react';
+// import { useLocation, withRouter } from "react-router-dom";
 import UserCard from "./UserCard";
 import NoUsersLeft from './NoUsersLeft';
 import Preferences from './Preferences';
@@ -24,49 +26,56 @@ const UserCardContainer = (props) => {
 
 
   //  Filter  users before mapping - import pref here
-
   
   
-  // const pref = props.user.preferences
-
-  // const filteredUsers = props.users?.filter( a => {
+  // let filteredUsers;
+  // const [cardshuffle, setcardShuffle] = useState(false)
+  
+  // useEffect(() => {
+  //   filteredUsers?.sort((a, b) => {return 0.5 - Math.random()})
     
-  //     a.gender === pref.gender_id  &&
-  //     a.drinks === pref.drinks_id &&
-  //     a.location.includes(pref.location) && 
-  //     a.height >= pref.min_height &&
-  //     a.height <= pref.max_height
-     
-
-  // })
-
-//shuffle 
-
-  // function shuffle(array) {
-  //   let currentIndex = array.length,  randomIndex;
+  // }, []);
   
-  //   // While there remain elements to shuffle.
-  //   while (currentIndex != 0) {
   
-  //     // Pick a remaining element.
-  //     randomIndex = Math.floor(Math.random() * currentIndex);
-  //     currentIndex--;
   
-  //     // And swap it with the current element.
-  //     [array[currentIndex], array[randomIndex]] = [
-  //       array[randomIndex], array[currentIndex]];
-  //   }
+  const pref = props.preferences
   
-  //   return array;
-  // }
-  
-//
-// const shuffledData = shuffle(filteredUsers)
+  // I know that code is not DRY - but i cannot use 2 ternary operatiors and && symbols in 1 conditional
+  let filteredUsers = props.users?.filter( a => {
+     if (  
+       pref.dating_goals !== 1 ? (  
+         a.drink_id === pref.drinks &&
+         a.dating_goal_id === pref.dating_goals &&
+         a.exercise_id === pref.exercises &&
+         a.location.includes(pref.location) &&
+         a.age >= pref.min_age &&
+         a.age <= pref.max_age &&
+         a.height_in_cm >= pref.min_height_in_cm &&
+         a.height_in_cm <= pref.max_height_in_cm &&
+         pref.genders === 3 ? a.gender_id : a.gender_id === pref.gender_id ):
+ 
+ // if dating_goal === 1 show all prefs
+         (
+            
+       a.drink_id === pref.drinks &&
+       a.exercise_id === pref.exercises &&
+       a.location.includes(pref.location) &&
+       a.age >= pref.min_age &&
+       a.age <= pref.max_age &&
+       a.height_in_cm >= pref.min_height_in_cm &&
+       a.height_in_cm <= pref.max_height_in_cm &&
+       pref.genders === 3 ? a.gender_id : a.gender_id === pref.gender_id
+         )
+      ) {
+         return true
+       }
+       else return false
+      
+ 
+   })
 
-// then pass it to userCards - i didnt change userCards yet
 
-  // Map over users and render profile cards
-  const userCards = props.users?.map((user) => {
+    const userCards = filteredUsers?.map((user) => {
     return (
       <TinderCard onSwipe={(direction) => onSwipe(direction, user.id)} onCardLeftScreen={() => onCardLeftScreen(user.id)} className="keen-tinder-card w-full rounded-xl drop-shadow-2xl" key={user.id}>
         <UserCard 
