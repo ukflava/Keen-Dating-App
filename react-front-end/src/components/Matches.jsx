@@ -2,6 +2,7 @@ import React from "react";
 import Conversation from "./Conversation";
 import MatchesListHeader from './MatchesListHeader';
 import MatchBubble from './MatchBubble';
+import NoMatches from "./NoMatches";
 
 import {useState, useEffect, useRef} from 'react';
 
@@ -93,10 +94,19 @@ export default function Matches(props) {
     }
   };
 
+  if (props.matches.length === 0) {
+    return (
+      <section className="user-card-container w-full place-content-center">
+        <NoMatches />
+      </section>
+    )
+  }
+
+
   // map over list of confirmed matches and display bubbles
   const match = props.matches?.map(match => {
     return (
-      <MatchBubble 
+      <MatchBubble
         key={match.id}
         matchData={matchesData[match.id]}
         userId={props.user}
@@ -125,7 +135,7 @@ export default function Matches(props) {
       />
       <MatchesListHeader user={props.user} />
       <div className="bg-white matches-bubble-list flex flex-col border-l border-t border-b border-gray-300 py-1">
-        {match? match : "loading"}
+        {match ? match : "loading"}
       </div>
     </div>
   );

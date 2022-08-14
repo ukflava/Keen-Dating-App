@@ -52,7 +52,7 @@ const MatchBubble = (props) => {
           <img src={props.matchData.photos[0].url} alt="thumbnail" className="w-6 h-6 rounded-full match-bubble-img object-cover" />
       </div>
 
-      <div className="match-bubble-info flex flex-col w-full bg-white px-2">
+      <div className="match-bubble-info flex flex-col w-full bg-white px-2 cursor-pointer">
         <div className={`match-bubble-name bg-white text-[0.75rem] 
        ${ 
         !props.matchData.seen
