@@ -8,7 +8,17 @@ const Conversation = (props) => {
       { props.selected 
         ? <>
           <MatchHeader selected={props.selected}/>
-          <ChatRoom selected={props.selected} user={props.user} allMessages={props.allMessages} setAllMessages={props.setAllMessages}  messageSent={props.messageSent} setMessageSent={props.setMessageSent}/>
+          <ChatRoom 
+            selected={props.selected} 
+            user={props.user} 
+            sendToServer={props.sendToServer}
+            allMessages={props.allMessages} 
+            setAllMessages={props.setAllMessages} 
+            setMessageSent={props.setMessageSent} 
+            setMessage={props.setMessage}
+            message={props.message}
+            matchesData={props.matchesData}
+          />
           </>
         : <div className='none-selected'> Send a message to one of your matches </div>
       }

@@ -13,17 +13,17 @@ const http = App.listen(8080, () => {
 });
 
 const clients = {};
-
 const io = new Server(http);
 
 io.on("connection", (client) => {
-   console.log("A Connection has been made", client.id);
- 
+  console.log("A Connection has been made", client.id);
 
   client.on("user", (user) => {
-    client.broadcast.emit('userConnect', user)
+    client.broadcast.emit('userConnect', user);
+    console.log('user', user);
     user.socket_id = client.id;
     client.user = user;
+    console.log('client.user', client.user);
     clients[user.id] = user;
     console.log("clients from server", clients)
   });
@@ -37,21 +37,16 @@ io.on("connection", (client) => {
     console.log("Client Disconnected!", client.user);
     client.broadcast.emit('userDisconnect', client.user)
     delete clients[client.user.id];
- 
   });
 
   client.on("sendMessage", (data) => {
-    
-    
-
     const query = `
-  INSERT INTO messages
-      (from_user_id, to_user_id, message, message_seen)
-    VALUES 
-      ($1, $2, $3, $4)
-    RETURNING *;
-  `;
-
+      INSERT INTO messages
+        (from_user_id, to_user_id, message, message_seen)
+      VALUES 
+        ($1, $2, $3, $4)
+      RETURNING *;
+      `;
     return (
       db
         .query(query, [
@@ -60,7 +55,10 @@ io.on("connection", (client) => {
           data.message,
           data.message_seen,
         ])
-        .then((newMsgData) => io.sockets.emit("message", newMsgData.rows[0]))
+        .then((newMsgData) => {
+          console.log('newMsgData', newMsgData.rows[0]);
+          io.sockets.emit("message", newMsgData.rows[0])
+        })
         .catch((error) => console.log("error", error))
     );
   });
