@@ -26,12 +26,12 @@ const App = () => {
   const [user, setUser] = useState({});
   const [state, setState] = useState({});
   const [allMessages, setAllMessages] = useState([]);
-  const [messageSent, setMessageSent] = useState(false);
+  const [messageSent, setMessageSent] = useState(0);
   const [preferences, setPreferences] = useState({});
   const [prefOptions, setPrefOptions] = useState({});
   const [matches, setMatches] = useState([])
   const [swipeHistory, setSwipeHistory] = useState([]);
-  const [seenUpdate, setSeenUpdate] = useState(false);
+  const [seenUpdate, setSeenUpdate] = useState(0);
 
   const resetStates = () => {
     setLoggedIn(reset.loggedIn);
@@ -89,7 +89,7 @@ const App = () => {
       .then((msgs) => {
         setAllMessages([...msgs.data])
       });
-  }, [messageSent, loggedIn]);
+  }, [messageSent, loggedIn, seenUpdate]);
 
   // Getting users current preferences settings
   useEffect(() => {

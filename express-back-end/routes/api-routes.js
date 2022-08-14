@@ -283,7 +283,6 @@ router.get("/preferences", (req, res) => {
 
   Promise.all(promises)
   .then(all => {
-    console.log("all", all)
     const genders = all[0].rows
     const exercises = all[1].rows
     const drinks = all[2].rows
