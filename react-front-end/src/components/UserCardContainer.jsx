@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import UserCard from "./UserCard";
 import NoUsersLeft from './NoUsersLeft';
 import Preferences from './Preferences';
@@ -24,28 +25,50 @@ const UserCardContainer = (props) => {
 
 
   //  Filter  users before mapping - import pref here
+  // I know that code is not DRY - but i cannot use 2 ternary operatiors and && symbols in 1 conditional
   
   const pref = props.preferences
 
  let filteredUsers = props.users?.filter( a => {
     if (  
+      pref.dating_goals !== 1 ? (  
+        a.drink_id === pref.drinks &&
+        a.dating_goal_id === pref.dating_goals &&
+        a.exercise_id === pref.exercises &&
+        a.location.includes(pref.location) &&
+        a.age >= pref.min_age &&
+        a.age <= pref.max_age &&
+        a.height_in_cm >= pref.min_height_in_cm &&
+        a.height_in_cm <= pref.max_height_in_cm &&
+        pref.genders === 3 ? a.gender_id : a.gender_id === pref.gender_id ):
+
+// if dating goal ===1 show all prefs
+        (
+           
       a.drink_id === pref.drinks &&
       a.exercise_id === pref.exercises &&
-      pref.dating_goal === 1 ? a.dating_goal_id : a.dating_goal_id === pref.dating_goals
-      &&
       a.location.includes(pref.location) &&
       a.age >= pref.min_age &&
       a.age <= pref.max_age &&
       a.height_in_cm >= pref.min_height_in_cm &&
       a.height_in_cm <= pref.max_height_in_cm &&
-      pref.genders === 3 ? a.gender_id : (a.gender_id === pref.gender_id)
-      ) {
+      pref.genders === 3 ? a.gender_id : a.gender_id === pref.gender_id
+        )
+     ) {
         return true
       }
       else return false
      
 
-  })
+  }).sort((a, b) => {return 0.5 - Math.random()});
+
+
+  // const [cardshuffle, setcardShuffle] = useState(false)
+
+  // useEffect(() => {
+  //   const shuffledData =  filteredUsers ? shuffle(filteredUsers) : [];
+    
+  // }, [props]);
 
 // shuffle 
 
@@ -66,13 +89,16 @@ const UserCardContainer = (props) => {
   
   //   return array;
   // }
+  console.log("users", props.users)
+  console.log("pref", pref)
+  console.log("filtered user", filteredUsers)
+
   
-
-// const shuffledData = shuffle(filteredUsers)
-
-// then pass it to userCards - i didnt change userCards yet
-
+  // const shuffledData =  filteredUsers ? shuffle(filteredUsers) : [];
+  // console.log("shuffled", shuffledData)
   // Map over users and render profile cards
+  // shuffle(filteredUsers)
+  // setcardShuffle(!cardshuffle)
   const userCards = filteredUsers?.map((user) => {
     return (
       <TinderCard onSwipe={(direction) => onSwipe(direction, user.id)} onCardLeftScreen={() => onCardLeftScreen(user.id)} className="keen-tinder-card w-full rounded-xl drop-shadow-2xl" key={user.id}>
