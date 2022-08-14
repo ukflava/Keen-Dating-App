@@ -74,7 +74,6 @@ const UserCardContainer = (props) => {
  
    })
 
-   setcardShuffle(!cardshuffle)
 
     const userCards = filteredUsers?.map((user) => {
     return (
