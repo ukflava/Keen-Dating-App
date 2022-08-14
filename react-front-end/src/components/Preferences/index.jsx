@@ -3,6 +3,7 @@ import Select from './SelectPreference';
 import {RefreshIcon, CheckIcon, ChevronRightIcon, ChevronLeftIcon} from '@heroicons/react/outline';
 import { useState, useEffect } from 'react';
 import SelectPreference from './SelectPreference';
+import { Link } from "react-router-dom";
 
 
 const Preferences = (props) => {
@@ -52,9 +53,9 @@ const Preferences = (props) => {
         <div className="preferences-items py-3 px-5 bg-white flex flex-col border-l border-r border-gray-300">
           {prefBoxes}
         </div>
-        <div onClick={updatePref} className="preferences-header bg-white font-semibold text-lg self-center p-4 rounded-b-xl border border-gray-300 w-full text-center cursor-pointer">
+        <Link to='/' onClick={updatePref} className="preferences-header bg-white font-semibold text-lg self-center p-4 rounded-b-xl border border-gray-300 w-full text-center cursor-pointer hover:bg-fuchsia-400 active:bg-fuchsia-800 focus:ring-fuchsia-500" >
           Save
-        </div>
+        </Link>
       </div>
     )
   };
