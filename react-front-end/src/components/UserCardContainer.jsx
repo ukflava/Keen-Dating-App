@@ -42,8 +42,7 @@ const UserCardContainer = (props) => {
   
   // I know that code is not DRY - but i cannot use 2 ternary operatiors and && symbols in 1 conditional
   let filteredUsers = props.users?.filter( a => {
-     if (  
-       pref.dating_goals !== 1 ? (  
+    if ( pref.dating_goals !== 1 ? (  
          a.drink_id === pref.drinks &&
          a.dating_goal_id === pref.dating_goals &&
          a.exercise_id === pref.exercises &&
@@ -56,7 +55,7 @@ const UserCardContainer = (props) => {
  
  // if dating_goal === 1 show all prefs
          (
-            
+      
        a.drink_id === pref.drinks &&
        a.exercise_id === pref.exercises &&
        a.location.includes(pref.location) &&
@@ -70,12 +69,10 @@ const UserCardContainer = (props) => {
          return true
        }
        else return false
-      
- 
-   })
+   });
 
 
-    const userCards = filteredUsers?.map((user) => {
+  const userCards = filteredUsers?.map((user) => {
     return (
       <TinderCard onSwipe={(direction) => onSwipe(direction, user.id)} onCardLeftScreen={() => onCardLeftScreen(user.id)} className="keen-tinder-card w-full rounded-xl drop-shadow-2xl" key={user.id}>
         <UserCard 

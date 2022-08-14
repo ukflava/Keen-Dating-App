@@ -111,7 +111,7 @@ const SelectPreference = (props) => {
         <div className='bg-whtie my-3'>
           <input 
             onChange={(e) => props.setNewPref({...props.newPref, location: e.target.value})}
-            placeholder={props.newPref.location} 
+            value={props.newPref.location} 
             type="text" 
             className='px-1 bg-white text-lg h-[50px] border-2 border-gray-300 rounded-md w-full' />
         </div>
