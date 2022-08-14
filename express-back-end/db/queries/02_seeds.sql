@@ -1,27 +1,75 @@
 INSERT INTO users (name, email, password, bio, age, gender_id, location, height_in_cm, education,
  occupation, drink_id, exercise_id, dating_goal_id, is_active)
 VALUES
-  ('Brennan Padilla','a@a.com', '1111', 'I have never seen a straight banana.', 25, 1, 'Vancouver', 180 , 'high school', 'student', 3, 3, 2, true),
-  ('Belle Hendrick','b@b.com', '1111', 'lorem bio', 30, 0, 'Toronto', 155 , 'University', 'Barista', 1, 2, 1, true),
-  ('dfasdf Hendrick','fddfsdf@hotmail.couk', '1111', 'lorem bio', 22, 1, 'Vancouver', 145 , 'high school', 'student', 1, 2, 1, true),
-  ('new person','c@c.com', '1111', 'lorem bio', 50, 1, 'Vancouver', 199 , 'high school', 'Plumber', 1, 2, 1, true),
-  ('New User 5','fddfsdf@hotmail.couk', '1111', 'lorem bio', 22, 1, 'Vancouver', 145 , 'high school', 'student', 1, 2, 1, true);
-
+  ('Chris Evans','ce@gmail.com', '123', 'Looking for an adventure partner. You in?', 41, 2, 'Boston', 183 , 'University', 'actor', 1, 4, 4, true),
+  ('Lady Gaga','lg@gmail.com', '123', 'I have never seen a straight banana', 36, 1, 'New York', 155 , 'University', 'Singer/Actress', 1, 2, 1, true),
+  ('The Weeknd','tw@gmail.com', '123', 'You can my be my star girl xoxo', 32, 2, 'Toronto', 173 , 'High school', 'Singer', 1, 2, 3, true),
+  ('Drake','dd@gmail.couk', '123', 'I have got my eyes on you, you are everything that I see, I want your hot love and emotion endlessly.', 35, 2, 'Toronto', 182 , 'High school', 'Singer/Investor', 1, 3, 1, true),
+  ('kendell jenner','kd@gmail.com', '123', 'Ask me anything, except the kardashians', 26, 1, 'Los Angeles', 179 , 'High school', 'Model', 1, 2, 3, true),
+  ('Doja Cat','dc@gmail.com', '123', 'Lets go on an adventure tgt 🐱~', 26, 1, 'Toronto', 165 , 'High school', 'Singer', 1, 1, 3, true),
+  ('Selena Gomez','sg@gmail.com', '123', 'Swipe right to find about more about me', 30, 1, 'Toronto', 165 , 'College', 'Actress/Singer', 1, 4, 3, true),
+  ('Harry Styles','hs@gmail.com', '123', 'I love anything that is a bit of a challenge.', 28, 2, 'Vancouver', 183 , 'College', 'Singer', 1, 3, 3, true),
+  ('Bella Hadid','bh@gmail.com', '123', 'I can teach you how to pose', 25, 1, 'Toronto', 175 , 'College', 'Model', 3, 4, 4, true),
+  ('Angelina Jolie','aj@gmail.com', '123', 'Swipe right to find about more about me', 47, 1, 'Los Angeles', 169 , 'College', 'Actress', 1, 4, 3, true),
+  ('Johnny Depp','jd@gmail.com', '123', 'now or never', 59, 2, 'Vancouver', 178 , 'College', 'Actor', 1, 4, 3, true),
+  ('leonardo dicaprio','ld@gmail.com', '123', 'now or never', 47, 2, 'New York', 183 , 'High School', 'Actor', 1, 4, 1, true),
+  ('Jacob Elordi', 'je@gmail.com', '123', 'I think you are lacking vitamin ME', 25, 2, 'Vancouver', 196, 'College', 'Actor', 2, 3, 4, true),
+  ('Shawn Mendes', 'sm@gmail.com', '123', 'Wine lover, Pizza addict, Netflix binger, Love dogs', 24, 2, 'Toronto', 188, 'College', 'Singer', 1, 2, 2,  true),
+  ('kim kardashian', 'kim@gmail.com', '123', 'Oh, and I need a date to my sisters wedding', 41, 1, 'Toronto', 157, 'College', 'Business Woman', 3, 4, 2, true),
+  ('Charlie Puth', 'cp@gmail.com', '123', 'Dogs 🐶 Carbs 🍕 Adventures', 30, 2, 'Las Vegas', 178, 'College', 'Singer', 2, 3, 1, true),
+  ('Emma Watson', 'ew@gmail.com', '123', 'now or never', 32, 1, 'Paris', 165, 'Master', 'Actress', 2, 1, 4, true),
+  ('chantel jeffries', 'cj@gmail.com', '123', 'Went to a party dressed as an egg, and got with a guy who was dressed as a chicken. A life long question was answered', 29, 1, 'Los Angeles', 166, 'College', 'DJ', 1, 1, 1, true),
+  ('Cindy Kimberly', 'ck@gmail.com', '123', ' I got 99 problems and the patriarchy explains at least 86 of them.', 23, 1, 'Los Angeles', 170, 'College', 'Influnener', 3, 4, 1, true),
+  ('Diplo', 'bp@gmail.com', '123', ' I like my partners same way I like my coffee. So swipe right if you are hot and bitter', 43, 2, 'Las Vegas', 179, 'High school', 'DJ', 2, 3, 1, true),
+  ('martin garrix', 'mg@gmail.com', '123', 'Your parents are going to love me', 26, 2, 'Las Vegas', 175, 'High school', 'DJ', 3, 1, 4, true)
+  ;
 
 INSERT INTO user_photos (user_id, url, is_profile)
 VALUES 
-(1, 'https://images.genius.com/51f5c16c628a0d96dd7285f7fdf26348.1000x1000x1.jpg', true),
-(2, 'https://pbs.twimg.com/media/ENLQQLJVUAATN8a.jpg', false),
-(2, 'http://d17zbv0kd7tyek.cloudfront.net/wp-content/uploads/2015/06/leonardo-dicaprio-fb.jpg', true),
-(2, 'https://d1jyxxz9imt9yb.cloudfront.net/person/1571/detail_image/mobile/LDC-High-Res-Headshot.jpg', false),
-(3, 'https://www.xtrafondos.com/wallpapers/vertical/ana-de-armas-en-photoshoot-5501.jpg', true),
-(3, 'https://www.xtrafondos.com/wallpapers/vertical/ana-de-armas-2020-6113.jpg', false),
-(3, 'https://images.hola.com/us/images/025b-0ee0dbb57971-3e4d042ce881-1000/vertical-800/ana-de-armas-luciendo-sus-looks-de-cabello-oscuro.jpg', false),
-(4, 'https://www.xtrafondos.com/wallpapers/vertical/ana-de-armas-en-photoshoot-5501.jpg', false),
-(4, 'https://www.xtrafondos.com/wallpapers/vertical/ana-de-armas-2020-6113.jpg', true),
-(4, 'https://images.hola.com/us/images/025b-0ee0dbb57971-3e4d042ce881-1000/vertical-800/ana-de-armas-luciendo-sus-looks-de-cabello-oscuro.jpg', false),
-(5, 'https://media.vogue.co.uk/photos/5e81ba5e138bdd00089677d9/2:3/w_2560%2Cc_limit/shutterstock_editorial_10576430d.jpg', true),
-(5, 'https://media.glamour.com/photos/617ed8cd81d28bb722b6812b/master/pass/1194078278', false);
+(1, 'https://data.whicdn.com/images/177793220/original.jpg', true),
+(1, 'https://pbs.twimg.com/media/Ehv6-JAWAAAkPcz.jpg', false),
+(1, 'https://static.onecms.io/wp-content/uploads/sites/6/2018/05/chris-evans-2000.jpg', false),
+(2, 'https://www.thewrap.com/wp-content/uploads/2021/11/LG-Sound-of-Music-Oscars.jpg', true),
+(2, 'https://i.pinimg.com/originals/3b/54/9a/3b549ac958fc9380a2b23c2c3386a8b0.jpg', false),
+(3, 'https://i.pinimg.com/originals/9f/f8/db/9ff8db20159c6e5e4b703368d5b33f8b.jpg', false),
+(3, 'https://images.303magazine.com/uploads/2022/03/BRIANZIFF_THEWEEKND_74-1_0.jpeg', true),
+(4, 'https://www.billboard.com/wp-content/uploads/2022/07/drake-pr-cr-univseral-music-2022-billboard-1548.jpg?w=942&h=623&crop=1.jpg', false),
+(4, 'https://media.wonderlandmagazine.com/uploads/2021/05/Drake-Candle-Release--e1620378729324.jpg', true),
+(5, 'https://i.pinimg.com/originals/96/5d/3a/965d3a0dc2a9fd76160bbadbb4325671.jpg', true),
+(5, 'https://i.pinimg.com/564x/3d/19/e8/3d19e86efc11cca669bb42e5f58cbbd3.jpg', false),
+(5, 'https://i.pinimg.com/originals/d4/8c/04/d48c0406791131e77c1a27b0d881401a.jpg', false),
+(6, 'https://akns-images.eonline.com/eol_images/Entire_Site/2020730/rs_1200x1200-200830194033-1200-doja-cat-winner-mtv-vma-2020-ls.jpg?fit=around%7C1200:1200&output-quality=90&crop=1200:1200;center,top.jpg', false),
+(7, 'https://media1.popsugar-assets.com/files/thumbor/_747zNxDa0FZDlH4JHhEmolTAdI/fit-in/1024x1024/filters:format_auto-!!-:strip_icc-!!-/2016/07/21/877/n/1922153/e381dec8c6bc66d9_7Rabbani_and_Solimene_Photography/i/2016.jpg', true),
+(7, 'https://media.glamour.com/photos/5cdb17640d3645f96221dfd7/1:1/w_2489,h_2489,c_limit/GettyImages-1149101453.jpg', false),
+(7, 'https://i0.web.de/image/684/36752684,pd=2/selena-gomez.jpg', false),
+(8, 'https://media.npr.org/assets/img/2020/02/27/wide-use_hpromophoto_helenepambrun-72fdb64792139d94a06f18686d0bb3131a238a70-s1100-c50.jpg', true),
+(8, 'https://media.vanityfair.com/photos/5da0c38748ce810008eca971/9:16/w_746,h_1327,c_limit/harry-styles-new-song.jpg', false),
+(9, 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/bella-hadid-1611314419.jpg?crop=1.00xw:0.669xh;0,0.0840xh&resize=640:*.jpg', true),
+(9, 'https://hips.hearstapps.com/hmg-prod/images/bella-hadid-attends-the-2020-mtv-video-music-awards-news-photo-1634224456.jpg?crop=0.946xw:0.641xh;0.0425xw,0.0772xh&resize=640:*.jpg', false),
+(9, 'https://vid.alarabiya.net/images/2020/07/08/6c675393-ba1c-490a-8699-e4bcb69c159b/6c675393-ba1c-490a-8699-e4bcb69c159b.jpg?crop=4:3&width=1200.jpg', false),
+(10, 'https://media.elcinema.com/uploads/_315x420_cc09e7d04bfd64b8989ac9455de57bccd2796fd89afa180b69f182ed31751218.jpg', true),
+(10, 'https://creeto.com/wp-content/uploads/Angelina-Jolie-fb-768x402.png', false),
+(11, 'https://healthyceleb.com/wp-content/uploads/2012/10/Johnny-Depp.jpg', true),
+(12, 'http://d17zbv0kd7tyek.cloudfront.net/wp-content/uploads/2015/06/leonardo-dicaprio-fb.jpg', true),
+(12, 'https://www.the-sun.com/wp-content/uploads/sites/6/2021/11/NINTCHDBPICT000217656527.jpg', false),
+(13, 'https://www.gluwee.com/wp-content/uploads/2022/05/Jacob-Elordi-758x421.jpg', true),
+(13, 'https://i0.wp.com/chevere.life/wp-content/uploads/2022/03/JACOB-ELORDI-2.jpg?fit=1440%2C1074&ssl=1.jpg', false),
+(14, 'https://www.nme.com/wp-content/uploads/2022/07/Shawn-Mendes.-Credit-Kevin-MazurGetty-Images-for-Shawn-Mendes-696x442.jpg', false),
+(14, 'https://culturess.com/wp-content/uploads/getty-images/2020/12/1202149828.jpeg', true),
+(15, 'https://media.allure.com/photos/62e9492bb0fb9f43af326775/16:9/w_2099,h_1181,c_limit/Kim%20Kardashian%20Minion%20Makeup.jpg', true),
+(15, 'https://media.glamourmagazine.co.uk/photos/62f38c3f46b4637ee696236d/4:3/w_1920,h_1440,c_limit/KIM%20BeATS%20100822%20Beats-x-Kim-Dune-1_SQ.jpg', false),
+(16, 'https://www.warnermusic.de/uploads/media/image-1002-704/03/19963-Charlie%20Puth_LS%20Press%20Photo%201_Photo%20Credit_%20Gabriela%20Hansen--square.jpg?v=1-11.jpg', true),
+(16, 'https://www.pinkvilla.com/imageresize/charlie_puth.jpg?width=752&format=webp&t=pvorg.jpg', false),
+(17, 'https://starsreveal.com/wp-content/uploads/2019/03/emma-1.jpg', true),
+(18, 'https://1.bp.blogspot.com/-H3zmJ7XhgkI/YAQ0UHpklmI/AAAAAAAAFR8/1py8qAn57_0dbheizcj53g1OITi3Dop-gCLcBGAsYHQ/s910/Chantel%2BJeffries%2B4.jpg', true),
+(18, 'https://celebtap.com/wp-content/uploads/2020/05/Chantel-Jeffries-640x498.jpg', false),
+(18, 'https://variety.com/wp-content/uploads/2018/05/chantel-jeffries-2018.jpg?w=1000.jpg', false),
+(19, 'https://external-preview.redd.it/0gb5vayMWlZAsW7qG8E2zNZxhSNaWFfc7sa8HwsihWw.jpg?width=640&crop=smart&auto=webp&s=6a82d00d3c7a0fb823932d889d3efe417e0c47b7.jpg', true),
+(19, 'https://www.thecityceleb.com/wp-content/uploads/2022/07/Wolfie-Cindy-Kimberly-Biography-Age-Ethnicity-Net-Worth-Full-Name-Boyfriend-Zodiac-Eye-Color-Skin-Care-Surgery-Nationality-Wikipedia-scaled.jpg', false),
+(20, 'https://www3.pictures.stylebistro.com/gi/Diplo+Ties+Novelty+Tie+L2x8cwgQWD2l.jpg', true),
+(21, 'https://cdn.smehost.net/2020sonymusiccouk-ukprod/wp-content/uploads/2019/10/Martin-Garrix-2020.jpg', true),
+(21, 'https://djmag.com/sites/default/files/styles/legacy_djmag_lanscape_public/public/article/image/martin-garrix-3_0.jpg?itok=Wqykd5dM.jpg', false)
+;
 
 
 INSERT INTO messages (from_user_id, to_user_id, message, message_seen, date_sent) 
@@ -56,7 +104,20 @@ VALUES
 
 (5, 1, true, true, CURRENT_TIMESTAMP),
 
-(3, 1, true, false, CURRENT_TIMESTAMP);
+(3, 1, true, false, CURRENT_TIMESTAMP),
+
+(6, 1, true, false, CURRENT_TIMESTAMP),
+
+(8, 1, true, false, CURRENT_TIMESTAMP),
+
+(9, 1, true, false, CURRENT_TIMESTAMP),
+
+(12, 1, true, false, CURRENT_TIMESTAMP),
+
+(10, 1, true, false, CURRENT_TIMESTAMP),
+
+(16, 1, true, false, CURRENT_TIMESTAMP)
+;
 
 INSERT INTO genders (value) 
 VALUES 
@@ -75,102 +136,25 @@ VALUES
   ('Not sure yet'), ('Short-term / Casual'), ('Long-term'), ('Life partner');
 
 
-  INSERT INTO preferences 
+INSERT INTO preferences 
   (user_id, gender_id, drink_id, exercise_id, dating_goal_id) 
 VALUES 
 (1, 1, 1, 1, 1),
 (2,2,2,2,2),
 (3,3,3,3,3),
-(4,1,1,1,1);
-
-
-insert into users (name, email, password, bio, age, gender_id, location, height_in_cm, education, occupation, drink_id, exercise_id, dating_goal_id, is_active) values ('Papageno Harcase', 'pharcase0@npr.org', '1ldVqX30lib', 'scale innovative users', 33, 1, 'Vancouver', 180, 'University of the Philippines Baguio', 'Analyst Programmer', 1, 2, 3, true);
-insert into users (name, email, password, bio, age, gender_id, location, height_in_cm, education, occupation, drink_id, exercise_id, dating_goal_id, is_active) values ('Cynde Ketcher', 'cketcher1@latimes.com', '7FyWZ7DsS', 'cultivate global functionalities', 72, 2, 'Vancouver', 173, 'The Art Institute of Boston', 'Operator', 3, 1, 2, false);
-insert into users (name, email, password, bio, age, gender_id, location, height_in_cm, education, occupation, drink_id, exercise_id, dating_goal_id, is_active) values ('Isa Linneman', 'ilinneman2@harvard.edu', 'LtZMDpmr', 'implement 24/7 schemas', 24, 2, 'Vancouver', 183, 'China Academy of Art', 'Analog Circuit Design manager', 2, 2, 2, true);
-insert into users (name, email, password, bio, age, gender_id, location, height_in_cm, education, occupation, drink_id, exercise_id, dating_goal_id, is_active) values ('Taite Bosse', 'tbosse3@ucsd.edu', 'fVOnwP', 'integrate enterprise solutions', 67, 2, 'Vancouver', 158, 'Sterlitamak State Pedagogical Institute', 'Mechanical Systems Engineer', 1, 3, 3, false);
-insert into users (name, email, password, bio, age, gender_id, location, height_in_cm, education, occupation, drink_id, exercise_id, dating_goal_id, is_active) values ('Lisbeth Harmar', 'lharmar4@cbslocal.com', 'fRa0tX', 'synergize e-business metrics', 65, 2, 'Turku', 145, 'Manhattan School of Music', 'Actuary', 3, 3, 1, false);
-insert into users (name, email, password, bio, age, gender_id, location, height_in_cm, education, occupation, drink_id, exercise_id, dating_goal_id, is_active) values ('Orazio Blanch', 'oblanch5@sohu.com', '7xV4TonTnPBK', 'matrix best-of-breed models', 41, 1, 'Vancouver', 158, 'Seisen University', 'Business Systems Development Analyst', 1, 3, 1, true);
-insert into users (name, email, password, bio, age, gender_id, location, height_in_cm, education, occupation, drink_id, exercise_id, dating_goal_id, is_active) values ('Gerhardine Bugdall', 'gbugdall6@opensource.org', '3YyBsZd', 'monetize scalable channels', 46, 1, 'Vancouver', 159, 'Southern Polytechnic State Univerisity', 'Senior Cost Accountant', 2, 2, 1, true);
-insert into users (name, email, password, bio, age, gender_id, location, height_in_cm, education, occupation, drink_id, exercise_id, dating_goal_id, is_active) values ('Garrett Readings', 'greadings7@nba.com', 'lbDs8Dla8', 'syndicate cross-platform convergence', 62, 2, 'Vancouver', 140, 'Universidad Intercontinental', 'Business Systems Development Analyst', 2, 2, 3, true);
-insert into users (name, email, password, bio, age, gender_id, location, height_in_cm, education, occupation, drink_id, exercise_id, dating_goal_id, is_active) values ('Bing Spencers', 'bspencers8@prweb.com', 'lyr626LN', 'visualize cross-media vortals', 49, 2, 'Vancouver', 197, 'Katsina University', 'VP Accounting', 3, 3, 3, true);
-insert into users (name, email, password, bio, age, gender_id, location, height_in_cm, education, occupation, drink_id, exercise_id, dating_goal_id, is_active) values ('Irwin Stott', 'istott9@yellowbook.com', 'zRWi0EykTU', 'incentivize web-enabled functionalities', 68, 2, 'Vancouver', 153, 'Comenius University in Bratislava', 'Recruiter', 3, 3, 3, false);
-
-insert into users (name, email, password, bio, age, gender_id, location, height_in_cm, education, occupation, drink_id, exercise_id, dating_goal_id, is_active) values ('Dehlia Minchenton', 'dminchenton10@weather.com', 'oNXBq1Wk8', 'harness holistic interfaces', 38, 2, 'Vancouver', 182, 'Universidade Gama Filho', 'Analog Circuit Design manager', 1, 1, 1, false);
-insert into users (name, email, password, bio, age, gender_id, location, height_in_cm, education, occupation, drink_id, exercise_id, dating_goal_id, is_active) values ('Katinka Pridding', 'kpridding11@wufoo.com', 'MzJXLVNQ', 'cultivate dot-com models', 71, 1, 'Vancouver', 146, 'Estonian Academy of Music and Theatre', 'Developer III', 1, 1, 1, true);
-insert into users (name, email, password, bio, age, gender_id, location, height_in_cm, education, occupation, drink_id, exercise_id, dating_goal_id, is_active) values ('Joshua Winsome', 'jwinsome12@ftc.gov', 'LObKNsDFt', 'incubate collaborative e-commerce', 73, 1, 'Vancouver', 194, 'Wittenborg University', 'Environmental Specialist', 1, 1, 1, false);
-insert into users (name, email, password, bio, age, gender_id, location, height_in_cm, education, occupation, drink_id, exercise_id, dating_goal_id, is_active) values ('Ethelred Shuttle', 'eshuttle13@apache.org', 'GNbldtHUadL', 'reintermediate virtual synergies', 40, 1, 'Vancouver', 157, 'St. Joseph University Beirut', 'Marketing Assistant', 1, 1, 1, true);
-insert into users (name, email, password, bio, age, gender_id, location, height_in_cm, education, occupation, drink_id, exercise_id, dating_goal_id, is_active) values ('Matthaeus Pace', 'mpace14@ezinearticles.com', 'B5l7LsViWhm', 'recontextualize cross-platform systems', 47, 2, 'Vancouver', 146, 'Universidad Cientifica del Sur', 'Structural Analysis Engineer', 1, 1, 1, true);
-insert into users (name, email, password, bio, age, gender_id, location, height_in_cm, education, occupation, drink_id, exercise_id, dating_goal_id, is_active) values ('Bryn Fills', 'bfills15@quantcast.com', 'POkNupm0NC', 'revolutionize holistic paradigms', 54, 2, 'Vancouver', 199, 'Kiev Slavonic University', 'Payment Adjustment Coordinator', 2, 2, 2, false);
-insert into users (name, email, password, bio, age, gender_id, location, height_in_cm, education, occupation, drink_id, exercise_id, dating_goal_id, is_active) values ('Gerrie Glazier', 'gglazier16@hhs.gov', '8UxNvDq', 'embrace web-enabled eyeballs', 27, 1, 'Vancouver', 192, 'Sophia University', 'Automation Specialist I', 2, 2, 2, true);
-insert into users (name, email, password, bio, age, gender_id, location, height_in_cm, education, occupation, drink_id, exercise_id, dating_goal_id, is_active) values ('Jayme Coomes', 'jcoomes17@multiply.com', '8n9WHVydJ', 'aggregate wireless markets', 55, 1, 'Vancouver', 158, 'Universidad de Colima', 'Project Manager', 2, 2, 2, true);
-insert into users (name, email, password, bio, age, gender_id, location, height_in_cm, education, occupation, drink_id, exercise_id, dating_goal_id, is_active) values ('Cos Dumphreys', 'cdumphreys18@usda.gov', 'ysvHGA7h', 'recontextualize collaborative initiatives', 24, 1, 'Vancouver', 155, 'Massachusetts Maritime Academy', 'Occupational Therapist', 2, 2, 2, false);
-insert into users (name, email, password, bio, age, gender_id, location, height_in_cm, education, occupation, drink_id, exercise_id, dating_goal_id, is_active) values ('Lew Onn', 'lonn19@pinterest.com', '509GEQRfsx', 'reintermediate bricks-and-clicks metrics', 66, 2, 'Vancouver', 177, 'The Global College Lahore', 'Account Representative IV', 2, 2, 2, false);
-
-
-insert into user_photos (user_id, url, is_profile) values (6, 'https://images.pexels.com/photos/459976/pexels-photo-459976.jpeg?auto=compress&cs=tinysrgb&w=300', true);
-insert into user_photos (user_id, url, is_profile) values (7, 'https://images.pexels.com/photos/101537/baby-boy-hat-covered-101537.jpeg?auto=compress&cs=tinysrgb&w=300', false);
-insert into user_photos (user_id, url, is_profile) values (8, 'https://images.pexels.com/photos/1648377/pexels-photo-1648377.jpeg?auto=compress&cs=tinysrgb&w=300', true);
-insert into user_photos (user_id, url, is_profile) values (9, 'https://images.pexels.com/photos/1556706/pexels-photo-1556706.jpeg?auto=compress&cs=tinysrgb&w=300', false);
-insert into user_photos (user_id, url, is_profile) values (10, 'https://images.pexels.com/photos/1166473/pexels-photo-1166473.jpeg?auto=compress&cs=tinysrgb&w=300', true);
-insert into user_photos (user_id, url, is_profile) values (11, 'https://images.pexels.com/photos/1364756/pexels-photo-1364756.jpeg?auto=compress&cs=tinysrgb&w=300', false);
-insert into user_photos (user_id, url, is_profile) values (12, 'https://images.pexels.com/photos/713959/pexels-photo-713959.jpeg?auto=compress&cs=tinysrgb&w=300', true);
-insert into user_photos (user_id, url, is_profile) values (13, 'https://images.pexels.com/photos/34763/baby-sleeping-baby-baby-girl.jpg?auto=compress&cs=tinysrgb&w=300', false);
-insert into user_photos (user_id, url, is_profile) values (14, 'https://images.pexels.com/photos/36039/baby-twins-brother-and-sister-one-hundred-days.jpg?auto=compress&cs=tinysrgb&w=300', false);
-insert into user_photos (user_id, url, is_profile) values (15, 'https://images.pexels.com/photos/590471/pexels-photo-590471.jpeg?auto=compress&cs=tinysrgb&w=300', false);
-
-insert into user_photos (user_id, url, is_profile) values (16, 'https://images.pexels.com/photos/1442005/pexels-photo-1442005.jpeg?auto=compress&cs=tinysrgb&w=300', true);
-insert into user_photos (user_id, url, is_profile) values (17, 'https://images.pexels.com/photos/933186/pexels-photo-933186.jpeg?auto=compress&cs=tinysrgb&w=300', false);
-insert into user_photos (user_id, url, is_profile) values (18, 'https://images.pexels.com/photos/50692/brothers-family-siblings-boys-50692.jpeg?auto=compress&cs=tinysrgb&w=300', true);
-insert into user_photos (user_id, url, is_profile) values (19, 'https://images.pexels.com/photos/1648375/pexels-photo-1648375.jpeg?auto=compress&cs=tinysrgb&w=300', false);
-insert into user_photos (user_id, url, is_profile) values (20, 'https://images.pexels.com/photos/1652117/pexels-photo-1652117.jpeg?auto=compress&cs=tinysrgb&w=300', true);
-insert into user_photos (user_id, url, is_profile) values (21, 'https://images.pexels.com/photos/428388/pexels-photo-428388.jpeg?auto=compress&cs=tinysrgb&w=300', false);
-insert into user_photos (user_id, url, is_profile) values (22, 'https://images.pexels.com/photos/1133721/pexels-photo-1133721.jpeg?auto=compress&cs=tinysrgb&w=300', true);
-insert into user_photos (user_id, url, is_profile) values (23, 'https://images.pexels.com/photos/2869318/pexels-photo-2869318.jpeg?auto=compress&cs=tinysrgb&w=300', false);
-insert into user_photos (user_id, url, is_profile) values (24, 'https://images.pexels.com/photos/1470677/pexels-photo-1470677.jpeg?auto=compress&cs=tinysrgb&w=300', false);
-insert into user_photos (user_id, url, is_profile) values (25, 'https://images.pexels.com/photos/929435/pexels-photo-929435.jpeg?auto=compress&cs=tinysrgb&w=300', false);
-
-
-insert into matchings (from_user_id, to_user_id, like_value, seen, matched_date) values (1, 17, false, false, '2022-04-04 22:41:59');
-insert into matchings (from_user_id, to_user_id, like_value, seen, matched_date) values (2, 13, true, true, '2022-01-07 19:15:28');
-insert into matchings (from_user_id, to_user_id, like_value, seen, matched_date) values (3, 17, false, true, '2021-08-28 16:07:21');
-insert into matchings (from_user_id, to_user_id, like_value, seen, matched_date) values (4, 14, false, false, '2021-10-24 11:35:00');
-insert into matchings (from_user_id, to_user_id, like_value, seen, matched_date) values (5, 19, true, true, '2022-04-30 16:47:43');
-insert into matchings (from_user_id, to_user_id, like_value, seen, matched_date) values (6, 14, true, true, '2021-11-19 16:02:00');
-insert into matchings (from_user_id, to_user_id, like_value, seen, matched_date) values (7, 14, false, true, '2022-04-20 05:46:23');
-insert into matchings (from_user_id, to_user_id, like_value, seen, matched_date) values (8, 17, true, true, '2022-01-19 02:19:34');
-insert into matchings (from_user_id, to_user_id, like_value, seen, matched_date) values (9, 17, false, false, '2021-08-14 03:43:32');
-insert into matchings (from_user_id, to_user_id, like_value, seen, matched_date) values (10, 19, false, true, '2021-09-04 07:33:22');
-insert into matchings (from_user_id, to_user_id, like_value, seen, matched_date) values (11, 9, true, false, '2022-06-13 22:53:37');
-insert into matchings (from_user_id, to_user_id, like_value, seen, matched_date) values (12, 2, false, true, '2022-08-05 03:54:38');
-insert into matchings (from_user_id, to_user_id, like_value, seen, matched_date) values (13, 9, false, false, '2022-02-11 02:55:18');
-insert into matchings (from_user_id, to_user_id, like_value, seen, matched_date) values (14, 10, false, false, '2021-09-25 01:07:53');
-insert into matchings (from_user_id, to_user_id, like_value, seen, matched_date) values (15, 8, true, true, '2022-07-08 19:20:14');
-insert into matchings (from_user_id, to_user_id, like_value, seen, matched_date) values (16, 8, false, true, '2021-08-24 04:37:39');
-insert into matchings (from_user_id, to_user_id, like_value, seen, matched_date) values (17, 12, false, false, '2021-11-21 20:27:09');
-insert into matchings (from_user_id, to_user_id, like_value, seen, matched_date) values (18, 12, true, false, '2021-09-07 18:43:39');
-insert into matchings (from_user_id, to_user_id, like_value, seen, matched_date) values (19, 3, true, true, '2022-01-03 09:26:23');
-insert into matchings (from_user_id, to_user_id, like_value, seen, matched_date) values (20, 7, false, false, '2022-01-27 20:04:40');
-insert into matchings (from_user_id, to_user_id, like_value, seen, matched_date) values (21, 1, false, true, '2021-12-09 00:02:39');
-insert into matchings (from_user_id, to_user_id, like_value, seen, matched_date) values (22, 2, false, true, '2021-09-28 22:35:22');
-insert into matchings (from_user_id, to_user_id, like_value, seen, matched_date) values (1, 9, false, false, '2022-04-04 22:41:59');
-insert into matchings (from_user_id, to_user_id, like_value, seen, matched_date) values (2, 23, true, true, '2022-01-07 19:15:28');
-insert into matchings (from_user_id, to_user_id, like_value, seen, matched_date) values (3, 7, false, true, '2021-08-28 16:07:21');
-insert into matchings (from_user_id, to_user_id, like_value, seen, matched_date) values (4, 6, false, false, '2021-10-24 11:35:00');
-insert into matchings (from_user_id, to_user_id, like_value, seen, matched_date) values (5, 9, true, true, '2022-04-30 16:47:43');
-insert into matchings (from_user_id, to_user_id, like_value, seen, matched_date) values (6, 4, true, true, '2021-11-19 16:02:00');
-insert into matchings (from_user_id, to_user_id, like_value, seen, matched_date) values (7, 4, false, true, '2022-04-20 05:46:23');
-insert into matchings (from_user_id, to_user_id, like_value, seen, matched_date) values (8, 7, true, true, '2022-01-19 02:19:34');
-insert into matchings (from_user_id, to_user_id, like_value, seen, matched_date) values (9, 7, false, false, '2021-08-14 03:43:32');
-insert into matchings (from_user_id, to_user_id, like_value, seen, matched_date) values (10, 9, false, true, '2021-09-04 07:33:22');
-insert into matchings (from_user_id, to_user_id, like_value, seen, matched_date) values (11, 9, true, false, '2022-06-13 22:53:37');
-insert into matchings (from_user_id, to_user_id, like_value, seen, matched_date) values (12, 2, false, true, '2022-08-05 03:54:38');
-insert into matchings (from_user_id, to_user_id, like_value, seen, matched_date) values (13, 9, false, false, '2022-02-11 02:55:18');
-insert into matchings (from_user_id, to_user_id, like_value, seen, matched_date) values (14, 3, false, false, '2021-09-25 01:07:53');
-insert into matchings (from_user_id, to_user_id, like_value, seen, matched_date) values (15, 2, true, true, '2022-07-08 19:20:14');
-insert into matchings (from_user_id, to_user_id, like_value, seen, matched_date) values (16, 8, false, true, '2021-08-24 04:37:39');
-insert into matchings (from_user_id, to_user_id, like_value, seen, matched_date) values (17, 22, false, false, '2021-11-21 20:27:09');
-insert into matchings (from_user_id, to_user_id, like_value, seen, matched_date) values (18, 22, true, false, '2021-09-07 18:43:39');
-insert into matchings (from_user_id, to_user_id, like_value, seen, matched_date) values (19, 4, true, true, '2022-01-03 09:26:23');
-insert into matchings (from_user_id, to_user_id, like_value, seen, matched_date) values (20, 6, false, false, '2022-01-27 20:04:40');
-insert into matchings (from_user_id, to_user_id, like_value, seen, matched_date) values (21, 7, false, true, '2021-12-09 00:02:39');
-insert into matchings (from_user_id, to_user_id, like_value, seen, matched_date) values (22, 6, false, true, '2021-09-28 22:35:22');
+(4,1,1,1,1),
+(5,1,1,1,1),
+(6,1,1,1,1),
+(7,1,1,1,1),
+(8,1,1,1,1),
+(9,1,1,1,1),
+(10,1,1,1,1),
+(11,1,1,1,1),
+(12,1,1,1,1),
+(13,1,1,1,1),
+(14,1,1,1,1),
+(15,1,1,1,1),
+(16,1,1,1,1),
+(17,1,1,1,1),
+(18,1,1,1,1)
+;
