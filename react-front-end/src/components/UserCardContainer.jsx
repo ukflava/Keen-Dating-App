@@ -23,9 +23,7 @@ const UserCardContainer = (props) => {
     }
   };
 
-
-
-    const pref = props.preferences
+  const pref = props.preferences
   
   // I know that code is not DRY - but i cannot use 2 ternary operatiors and && symbols in 1 conditional
   let filteredUsers = props.users?.filter( a => {

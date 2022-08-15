@@ -5,12 +5,38 @@ import { useState, useEffect } from 'react';
 import SelectPreference from './SelectPreference';
 import { Link } from "react-router-dom";
 
+import axios from 'axios';
 
 const Preferences = (props) => {
   const [currentOpen, setCurrentOpen] = useState({});
   const [oldPref, setOldPref] = useState({...props.prefs});
   const [newPref, setNewPref] = useState({...props.prefs});
   const [open, setOpen] = useState(false);
+  const [coords, setCoords] = useState([]);
+
+  // turn location to coords
+  useEffect(() => {
+    axios.get(`http://www.mapquestapi.com/geocoding/v1/address?key=${process.env.REACT_APP_MQ_KEY}&location=${newPref.location},BC,CA`)
+      .then((results) => {
+        console.log('results', results.data.results);
+        const latLng = [];
+        latLng.push(results.data.results[0].locations[0].latLng.lat);
+        latLng.push(results.data.results[0].locations[0].latLng.lng);
+        console.log('latlng');
+        setCoords([...latLng]);
+      })
+      .catch((error) => console.log('error', error));
+  }, []);
+
+  // Helper to find new location
+  const newLocation = (newCoords) => {
+    axios.get(`http://www.mapquestapi.com/geocoding/v1/reverse?key=${process.env.REACT_APP_MQ_KEY}&location=${newCoords[0]},${newCoords[1]}&includeRoadMetadata=false&includeNearestIntersection=false`)
+      .then((results) => {
+        const city = results.data.results[0].locations[0].adminArea5;
+        setNewPref({...newPref, location: city})
+      })
+      .catch((error) => console.log('error', error));
+  };
 
   // Helper to allow toggling and render diff things
   const currentOpenHelper = (newOpen) => {
@@ -95,6 +121,8 @@ const Preferences = (props) => {
             prefOptions={props.prefOptions}
             setOpen={setOpen}
             prefBuilder={prefBuilder}
+            coords={coords}
+            newLocation={newLocation}
           />
         </div>
       </div>

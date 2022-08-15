@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react';
 import SelectPreferenceItem from './SelectPreferenceItem';
 import MultiRangeSlider from "multi-range-slider-react";
+import Maps from '../Maps';
 
 const SelectPreference = (props) => {
   const [options, setOptions] = useState([]);
@@ -109,6 +110,7 @@ const SelectPreference = (props) => {
           Set a location preference
         </div>
         <div className='bg-whtie my-3'>
+          <Maps coords={props.coords} newLocation={props.newLocation}/>
           <input 
             onChange={(e) => props.setNewPref({...props.newPref, location: e.target.value})}
             value={props.newPref.location} 
