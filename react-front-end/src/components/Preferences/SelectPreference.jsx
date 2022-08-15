@@ -7,6 +7,7 @@ const SelectPreference = (props) => {
   const [options, setOptions] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  // waits until props passed down fill the states
   useEffect(() => {
     let loading = true;
 
@@ -33,20 +34,13 @@ const SelectPreference = (props) => {
     props.setOpen(false);
   };
 
-  // inputs
-  const inputPrefBuilder = (newValue) => {
-    props.setNewPref({...props.newPref, location: newValue});
-  }
-
   // range input
   const handleAgeInput = (e) => {
-    console.log('age input');
     props.setNewPref({...props.newPref, min_age: e.minValue, max_age: e.maxValue});
   };
 
   // range input
   const handleHeightInput = (e) => {
-    console.log('height input');
     props.setNewPref({...props.newPref, min_height_in_cm: e.minValue, max_height_in_cm: e.maxValue});
   };
 
@@ -117,7 +111,6 @@ const SelectPreference = (props) => {
             type="text" 
             className='px-1 bg-white text-lg h-[50px] border-2 border-gray-300 rounded-md w-full' />
         </div>
-
       </div>
     )
   };
@@ -176,7 +169,7 @@ const SelectPreference = (props) => {
 
   else {
     return (
-      <div>is this the error?</div>
+      <div className='bg-white'>Error occured. Try refreshing</div>
     )
   }
 };
