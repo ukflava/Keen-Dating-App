@@ -11,7 +11,8 @@ const reset = {
   preferences: {},
   prefOptions: {},
   matches: [],
-  swipeHistory: []
+  swipeHistory: [],
+  filtered: []
 }
 
 const useAppData = () => {
@@ -25,6 +26,7 @@ const useAppData = () => {
   const [matches, setMatches] = useState([])
   const [swipeHistory, setSwipeHistory] = useState([]);
   const [seenUpdate, setSeenUpdate] = useState(0);
+  const [filtered, setFiltered] = useState([]);
 
   // reset states on logout
   const resetStates = () => {
@@ -37,6 +39,7 @@ const useAppData = () => {
     setPrefOptions({...reset.prefOptions});
     setMatches([...reset.matches]);
     setSwipeHistory([...reset.swipeHistory]);
+    setFiltered([...reset.filtered]);
   };
 
   // if req.session.user_id exists, set loggedIn to true
@@ -72,7 +75,10 @@ const useAppData = () => {
         setState({...state, 
           users: all[0].data, 
           likedBy: all[1].data});
-      }) 
+      })
+      .then(() => {
+        filterUsers(state.users);
+      })
     }
 
   }, [loggedIn, preferences, matches]);
@@ -110,6 +116,17 @@ const useAppData = () => {
       })
       .catch((error) => console.log('error', error));
   }, [swipeHistory, loggedIn, seenUpdate]);
+
+  // Filtering users
+  const filterUsers = (allUsers) => {
+    console.log('here', allUsers);
+    const usersFiltered = allUsers?.filter((user) => {
+      return (user.gender_id === preferences.genders) && (user.location === preferences.location) && (preferences.max_age >= user.age) && (preferences.min_age <= user.age)  && (preferences.max_height_in_cm >= user.height_in_cm) && (preferences.min_height_in_cm <= user.height_in_cm) && (preferences.drinks >= 1 ? user.drink_id >= 1 : user.drink_id === 0) && (preferences.exercises >= 1 ? user.exercise_id >= 1 : user.exercise_id === 0) && (preferences.drinks >= 1 ? user.drink_id >= 1 : user.drink_id === 0);
+    });
+
+    setFiltered([...usersFiltered]);
+  };
+
 
   // like user - takes in swiped on Ids and like value:boolean
   const swipeUser = (toId, like) => {
@@ -174,6 +191,7 @@ const useAppData = () => {
     updatePreferences,
     handleClickLogOut,
     updateProfile,
+    filtered, setFiltered
   }
 };
 
