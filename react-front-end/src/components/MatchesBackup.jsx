@@ -1,27 +1,15 @@
 import React from "react";
 import Conversation from "./Conversation";
 import MatchBubble from './MatchBubble';
-import {
-    BellIcon
-} from "@heroicons/react/outline";
-
 import {useState} from 'react';
-// state={state} matches={matches} allMessages={allMessages} setAllMessages={setAllMessages}
+
 export default function Matches(props) {
   const [selected, setSelected] = useState(null);
 
   // Click handler to set current view/chat 
   const selectHandler = (matchObj) => {
-    console.log('selected', matchObj);
     setSelected(matchObj);
   };
-
-  // function seen(input) { 
-  //   if(props.matches && props.messages.filter(a => a.to_user_id === input && a.message_seen === false).length > 0)
-  //   {return true}
-  //   else return false
-  // } 
-  //+ (seen(match.id)? " bg-fuchsia-50 hover:bg-fuchsia-300" : " bg-white hover:bg-gray-100")
 
   // map over list of confirmed matches and display bubbles
   const match = props.matches?.map(match => {
@@ -39,9 +27,6 @@ export default function Matches(props) {
       />
     );
   });
-
-
-  
 
   return (
     <div className='outer-most-matches-div grid'>

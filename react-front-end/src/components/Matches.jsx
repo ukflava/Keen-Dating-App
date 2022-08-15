@@ -3,20 +3,15 @@ import Conversation from "./Conversation";
 import MatchesListHeader from './MatchesListHeader';
 import MatchBubble from './MatchBubble';
 import NoMatches from "./NoMatches";
-
-import {useState, useEffect, useRef} from 'react';
-
-// SOCKETIO TEST
+import {useState, useEffect} from 'react';
 import io from 'socket.io-client';
 
 export default function Matches(props) {
   const [selected, setSelected] = useState(null);
   const [matchesData, setMatchesData] = useState({});
-  // SOCKETIO TEST
   const [socket, setSocket] = useState();
   const [message, setMessage] = useState('');
   const [matchIds, setMatchIds] = useState([]);
-
 
   // Click handler to set current view/chat 
   const selectHandler = (matchObj) => {
@@ -36,17 +31,12 @@ export default function Matches(props) {
         photos: [...match.photos],
         messages: props.allMessages.filter(msg => msg.to_user_id === match.id || msg.from_user_id === match.id)
       };
-
       arr.push(match.id);
     };
 
-  
-
     setMatchesData({...data});
     setMatchIds([...arr]);
-
   }, [props.allMessages, props.matches, selected]);
-
 
   // socket io handlers
   useEffect(() => {
@@ -54,7 +44,6 @@ export default function Matches(props) {
     setSocket(socket);
     socket.on('connect', () => {
       const data = {id: props?.user?.id, name: props?.user?.name,}
-      console.log('data on client', data);
       socket.emit('user', data);
     });
 
@@ -63,8 +52,6 @@ export default function Matches(props) {
     });
 
     socket.on("message", (message) => {
-      console.log('message back from server', message);
-      console.log('my id', props.user.id);
       if (message.from_user_id === props.user.id || message.to_user_id === props.user.id) {
         props.setAllMessages(prev => [...prev, message]);
       }
@@ -78,7 +65,6 @@ export default function Matches(props) {
 
   // gets called when send button is clicked
   const sendToServer = () => {
-    console.log('send to server');
     if (message) {
       const msgData = {
         from_user_id: props.user.id,
@@ -101,7 +87,6 @@ export default function Matches(props) {
       </section>
     )
   }
-
 
   // map over list of confirmed matches and display bubbles
   const match = props.matches?.map(match => {

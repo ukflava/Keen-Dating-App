@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
-import * as ROUTES from './routes';
 
-const NoUsersLeft = (props) => {
+const NoUsersLeft = () => {
   return (
     <div className='no-users-left-container whitespace-pre-line flex flex-col'>
       <div className="no-more-text my-1">

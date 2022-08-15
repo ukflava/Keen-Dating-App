@@ -1,14 +1,10 @@
-// import { useState, useEffect } from 'react';
-// import { useLocation, withRouter } from "react-router-dom";
 import UserCard from "./UserCard";
 import NoUsersLeft from './NoUsersLeft';
 import Preferences from './Preferences';
-
 // Hook credit to @3DJakob on github 
 import TinderCard from 'react-tinder-card';
 
 const UserCardContainer = (props) => {
-
   // Helper to decide what to do after cards left
   const onCardLeftScreen = (id) => {
     console.log(id + ' left the screen')
@@ -23,7 +19,8 @@ const UserCardContainer = (props) => {
     }
   };
 
-  const pref = props.preferences
+  /// PREFERENCES NEED WORKING
+  const pref = props.preferences;
   
   // I know that code is not DRY - but i cannot use 2 ternary operatiors and && symbols in 1 conditional
   let filteredUsers = props.users?.filter( a => {
@@ -60,11 +57,9 @@ const UserCardContainer = (props) => {
     if ( pref.genders !== 3 ? a.gender_id === pref.genders : a.gender_id)
     {return true}
     else return false
-   })
-
-    console.log("pref", pref)
-   console.log("filter", filteredUsers)
+   });
  
+   
   const userCards = filteredWithGender?.map((user) => {
     return (
       <TinderCard onSwipe={(direction) => onSwipe(direction, user.id)} onCardLeftScreen={() => onCardLeftScreen(user.id)} className="keen-tinder-card w-full rounded-xl drop-shadow-2xl" key={user.id}>

@@ -163,7 +163,6 @@
 .preferences-container {
   grid-area: 2 / 3 / 5 / 5;
   min-width: 0;
-  /* overflow-y: scroll; */
 }
 
 .preferences-items {

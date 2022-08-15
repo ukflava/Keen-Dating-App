@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import UserCard from "./UserCard";
 
+// Check match's profile again when clicked on name in chatroom area
 const UserProfile = (props) => {
   const params = useParams();
 
@@ -19,7 +20,6 @@ const UserProfile = (props) => {
   return (
     <section className="user-card-container w-full place-content-center">
     <div className="keen-tinder-card w-full rounded-xl drop-shadow-2xl">
-      {}
       <UserCard
         key={matchedUser.id}
         id={matchedUser.id}
