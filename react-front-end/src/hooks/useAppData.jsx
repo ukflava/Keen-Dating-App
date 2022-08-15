@@ -63,6 +63,14 @@ const useAppData = () => {
       .catch((error) => console.log('error', error));
   }, [loggedIn]);
 
+  // Getting users current preferences settings
+  useEffect(() => {
+    axios.get('/api/users/preferences')
+      .then((results) => {
+        setPreferences({...results.data});
+      })
+    }, [loggedIn]);
+
   // promise chain for setting initial states
   // Depency: Will likely depend on swiping state
   useEffect(() => {
@@ -74,10 +82,29 @@ const useAppData = () => {
       .then((all) => {
         setState({...state, 
           users: all[0].data, 
-          likedBy: all[1].data});
+          likedBy: all[1].data
+        });
+        return all[0].data;
       })
-      .then(() => {
-        filterUsers(state.users);
+      .then((everyone) => {
+        const newList = [];
+        everyone.forEach((person) => {
+          if ((person.gender_id === preferences.genders) 
+            && (person.location === preferences.location)
+            && ((person.age <= preferences.max_age) && (person.age >= preferences.min_age))
+            && ((person.height_in_cm <= preferences.max_height_in_cm) && (person.height_in_cm >= preferences.min_height_in_cm))
+          ) {
+            newList.push(person);
+          }
+        });
+        return newList;
+      })
+      .then((displayUsers) => {
+        if (displayUsers.length < 1) {
+          setFiltered([]);
+        } else {
+          setFiltered([...displayUsers]);
+        }
       })
     }
 
@@ -90,14 +117,6 @@ const useAppData = () => {
         setAllMessages([...msgs.data])
       });
   }, [messageSent, loggedIn, seenUpdate]);
-
-  // Getting users current preferences settings
-  useEffect(() => {
-    axios.get('/api/users/preferences')
-      .then((results) => {
-        setPreferences({...results.data});
-      })
-  }, [loggedIn]);
 
   // Get all preference options
   useEffect(() => {
@@ -118,14 +137,15 @@ const useAppData = () => {
   }, [swipeHistory, loggedIn, seenUpdate]);
 
   // Filtering users
-  const filterUsers = (allUsers) => {
-    console.log('here', allUsers);
-    const usersFiltered = allUsers?.filter((user) => {
-      return (user.gender_id === preferences.genders) && (user.location === preferences.location) && (preferences.max_age >= user.age) && (preferences.min_age <= user.age)  && (preferences.max_height_in_cm >= user.height_in_cm) && (preferences.min_height_in_cm <= user.height_in_cm) && (preferences.drinks >= 1 ? user.drink_id >= 1 : user.drink_id === 0) && (preferences.exercises >= 1 ? user.exercise_id >= 1 : user.exercise_id === 0) && (preferences.drinks >= 1 ? user.drink_id >= 1 : user.drink_id === 0);
-    });
-
-    setFiltered([...usersFiltered]);
-  };
+  // const filterUsers = (allUsers) => {
+  //   console.log('here', allUsers);
+  //   console.log('pref', preferences);
+  //   const usersFiltered = allUsers?.filter((user) => {
+  //     return user.gender_id === preferences.genders && user.location === preferences.location && preferences.max_age >= user.age && preferences.min_age <= user.age;
+  //   });
+  //   console.log('asdfasd', usersFiltered);
+  //   return usersFiltered;
+  // };
 
 
   // like user - takes in swiped on Ids and like value:boolean
