@@ -13,7 +13,7 @@ const InputArea = (props) => {
       <EmojiTable emojiOpen={emojiOpen} setEmojiOpen={setEmojiOpen} setMessage={props.setMessage} />
       <GiphyTable giphyOpen={giphyOpen} setGiphyOpen={setGiphyOpen} sendGiphy={props.sendGiphyToServer}/>
       <textarea className='msg-text-area bg-white resize-none w-full h-full align-center px-[7px] py-[1.5px] text-sm focus: outline-0' placeholder='Say something' value={props.message} onChange={(e) => props.setMessage(e.target.value)}/>
-      <PaperAirplaneIcon className='ml-1 w-5 h-5 text-black bg-white' onClick={props.sendToServer}/>
+      <PaperAirplaneIcon className='ml-1 w-5 h-5 text-black bg-white cursor-pointer' onClick={props.sendToServer}/>
     </div>
   );
 };

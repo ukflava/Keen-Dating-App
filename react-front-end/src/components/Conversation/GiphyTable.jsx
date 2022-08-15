@@ -32,7 +32,7 @@ const GiphyTable = (props) => {
     console.log("text from GiphyTable", text)
 
     const apiCall = async () => {
-      const res = await giphy.animate(text, { limit: 20 })
+      const res = await giphy.animate(text, { limit: 14 })
       console.log(res.data)
       setResults(res.data)
     }
@@ -44,14 +44,14 @@ const GiphyTable = (props) => {
 
   return (
    <> 
-   <PlusCircleIcon className='emoji-icon mr-1 w-5 h-5 text-black bg-white relative'
+   <PlusCircleIcon className='emoji-icon mr-1 w-5 h-5 text-black bg-white relative cursor-pointer'
       onClick={tableClickHandler} />
     {props.giphyOpen
     ? <div className='absolute bg-white bottom-24 z-50'>
       <input className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' placeholder='Search giphy' value={text} onChange={handleInput} onClick={handleSubmit}/>
 
 
-      {results && <TextList className="flex flex-row" sendGiphy={props.sendGiphy} gifs={results}/>}
+      {results && <TextList className="drop-shadow-lg" sendGiphy={props.sendGiphy} gifs={results}/>}
 
     </div>
     : <></>
