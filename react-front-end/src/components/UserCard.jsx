@@ -3,7 +3,9 @@ import {useState} from 'react';
 import ImageReplacer from './ImageReplacer';
 import PreferenceBox from './Preferences/PreferenceBox';
 import SelectPreference from './Preferences/SelectPreference';
-import SelectPreferenceItem from './Preferences/SelectPreferenceItem';
+import Maps from './Maps';
+
+import axios from 'axios';
 
 const UserCard = (props) => {
   const [pager, setPager] = useState(0);
@@ -57,6 +59,17 @@ const UserCard = (props) => {
   // Helper to update your profile
   const profileUpdater = () => {
     props.updateProfile(newProfile);
+  };
+
+  // Helper to find new location
+  const newLocation = (newCoords) => {
+    console.log('new location', newCoords);
+    axios.get(`http://www.mapquestapi.com/geocoding/v1/reverse?key=${process.env.REACT_APP_MQ_KEY}&location=${newCoords[0]},${newCoords[1]}&includeRoadMetadata=false&includeNearestIntersection=false`)
+      .then((results) => {
+        const city = results.data.results[0].locations[0].adminArea5;
+        setNewProfile({...newProfile, location: city})
+      })
+      .catch((error) => console.log('error', error));
   };
 
   // user profile edit html
@@ -162,6 +175,9 @@ const UserCard = (props) => {
             <textarea value={newProfile.bio} onChange={(e) => setNewProfile({...newProfile, bio: e.target.value})} className="bg-white user-bio resize-none w-full h-56 border border-gray-900 rounded-lg p-2">{newProfile.bio}</textarea>
 
             <div className='bg-white flex items-center my-3'><MapIcon className="h-5 w-5 text-black mr-1" /><span className="bg-white text-lg font-semibold">Location</span></div>
+
+            <Maps newLocation={newLocation}/>
+
             <textarea value={newProfile.location} onChange={(e) => setNewProfile({...newProfile, location: e.target.value})} className="bg-white user-bio resize-none w-full h-11 border border-gray-900 rounded-lg p-2">{newProfile.location}</textarea>
 
             <div className='bg-white flex items-center my-3'><AcademicCapIcon className="h-5 w-5 text-black mr-1" /><span className="bg-white text-lg font-semibold">Education</span></div>

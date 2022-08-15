@@ -193,7 +193,17 @@
   box-shadow: none;
 }
 
+.pg-map-container {
+  background-color: transparent !important;
+}
 
+.pigeon-tiles-box, .pigeon-overlays {
+  background-color: transparent !important;
+}
+
+.pigeon-click-block, .pigeon-click-block > * {
+  background-color: transparent !important;
+}
 
 
 
