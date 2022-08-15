@@ -38,7 +38,6 @@ export default function Matches(props) {
     setMatchIds([...arr]);
   }, [props.allMessages, props.matches, selected]);
 
-
   // socket io handlers
   useEffect(() => {
     const socket = io();
