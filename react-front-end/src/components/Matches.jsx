@@ -65,7 +65,6 @@ export default function Matches(props) {
 
   // gets called when send button is clicked
   const sendToServer = () => {
-    console.log('send to server');
     if (message) {
       const msgData = {
         from_user_id: props.user.id,

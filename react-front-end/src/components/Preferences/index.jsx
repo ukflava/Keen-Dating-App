@@ -16,11 +16,9 @@ const Preferences = (props) => {
   useEffect(() => {
     axios.get(`http://www.mapquestapi.com/geocoding/v1/address?key=${process.env.REACT_APP_MQ_KEY}&location=${newPref.location},BC,CA`)
       .then((results) => {
-        console.log('results', results.data.results);
         const latLng = [];
         latLng.push(results.data.results[0].locations[0].latLng.lat);
         latLng.push(results.data.results[0].locations[0].latLng.lng);
-        console.log('latlng');
         setCoords([...latLng]);
       })
       .catch((error) => console.log('error', error));
