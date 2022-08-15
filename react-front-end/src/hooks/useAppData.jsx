@@ -136,18 +136,6 @@ const useAppData = () => {
       .catch((error) => console.log('error', error));
   }, [swipeHistory, loggedIn, seenUpdate]);
 
-  // Filtering users
-  // const filterUsers = (allUsers) => {
-  //   console.log('here', allUsers);
-  //   console.log('pref', preferences);
-  //   const usersFiltered = allUsers?.filter((user) => {
-  //     return user.gender_id === preferences.genders && user.location === preferences.location && preferences.max_age >= user.age && preferences.min_age <= user.age;
-  //   });
-  //   console.log('asdfasd', usersFiltered);
-  //   return usersFiltered;
-  // };
-
-
   // like user - takes in swiped on Ids and like value:boolean
   const swipeUser = (toId, like) => {
     axios.post('/api/users/matchings', {toId, like})
