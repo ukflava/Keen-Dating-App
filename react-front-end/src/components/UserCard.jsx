@@ -1,5 +1,5 @@
 import { UserIcon, CakeIcon, MapIcon, BriefcaseIcon, AcademicCapIcon, BeakerIcon, SearchIcon, ChartBarIcon, ChevronLeftIcon, ChevronRightIcon, CheckIcon, RefreshIcon, PencilIcon } from '@heroicons/react/outline';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import ImageReplacer from './ImageReplacer';
 import PreferenceBox from './Preferences/PreferenceBox';
 import SelectPreference from './Preferences/SelectPreference';
@@ -15,6 +15,20 @@ const UserCard = (props) => {
   const [editSelectable, setEditSelectable] = useState({
     open: false
   });
+  const [coords, setCoords] = useState([]);
+
+  // turn location to coords
+  useEffect(() => {
+    axios.get(`http://www.mapquestapi.com/geocoding/v1/address?key=${process.env.REACT_APP_MQ_KEY}&location=${props.location},BC,CA`)
+      .then((results) => {
+        const latLng = [];
+        latLng.push(results.data.results[0].locations[0].latLng.lat);
+        latLng.push(results.data.results[0].locations[0].latLng.lng);
+        console.log('latlng');
+        setCoords([...latLng]);
+      })
+      .catch((error) => console.log('error', error));
+  }, []);
 
   // Helper function to capitalize first letter of user-more-info content
   const formatText = (text) => {
@@ -63,7 +77,6 @@ const UserCard = (props) => {
 
   // Helper to find new location
   const newLocation = (newCoords) => {
-    console.log('new location', newCoords);
     axios.get(`http://www.mapquestapi.com/geocoding/v1/reverse?key=${process.env.REACT_APP_MQ_KEY}&location=${newCoords[0]},${newCoords[1]}&includeRoadMetadata=false&includeNearestIntersection=false`)
       .then((results) => {
         const city = results.data.results[0].locations[0].adminArea5;
@@ -176,7 +189,7 @@ const UserCard = (props) => {
 
             <div className='bg-white flex items-center my-3'><MapIcon className="h-5 w-5 text-black mr-1" /><span className="bg-white text-lg font-semibold">Location</span></div>
 
-            <Maps newLocation={newLocation}/>
+            <Maps newLocation={newLocation} coords={coords} />
 
             <textarea value={newProfile.location} onChange={(e) => setNewProfile({...newProfile, location: e.target.value})} className="bg-white user-bio resize-none w-full h-11 border border-gray-900 rounded-lg p-2">{newProfile.location}</textarea>
 
