@@ -2,14 +2,10 @@ import React, { useState } from "react";
 import axios from 'axios';
 
 function LoginForm(props) {
-  // LOGIN AND SIGNOUT - everything in here will likely need to be moved to login page when we start working on front end
-  // DISCUSS: either keep pw as strings or implement bcrpyt later on
-  // initial state of these empty string
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const handleClickLogIn = (e) => {
-    // prevent default action of a button type = submit 
     e.preventDefault();
     axios.post('/login', { username, password })
       .then((response) => {
@@ -35,7 +31,6 @@ function LoginForm(props) {
         <form className="login-form bg-white drop-shadow px-8 pt-6 pb-8 mb-4 mix-blend-normal">
           <div className="form-inner bg-white">
             <h1 className="text-center mb-5 font-bold text-xl mt-10 bg-white">Keen</h1>
-            {/* error msg */}
             <div className="mb-3 pt-3 bg-white">
               <input
                 onChange={(event) => setUsername(event.target.value)}
