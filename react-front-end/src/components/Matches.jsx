@@ -44,7 +44,6 @@ export default function Matches(props) {
     setSocket(socket);
     socket.on('connect', () => {
       const data = {id: props?.user?.id, name: props?.user?.name,}
-      console.log('data on client', data);
       socket.emit('user', data);
     });
 
@@ -53,8 +52,6 @@ export default function Matches(props) {
     });
 
     socket.on("message", (message) => {
-      console.log('message back from server', message);
-      console.log('my id', props.user.id);
       if (message.from_user_id === props.user.id || message.to_user_id === props.user.id) {
         props.setAllMessages(prev => [...prev, message]);
       }
