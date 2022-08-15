@@ -1,10 +1,8 @@
 import PreferenceBox from './PreferenceBox';
-import Select from './SelectPreference';
-import {RefreshIcon, CheckIcon, ChevronRightIcon, ChevronLeftIcon} from '@heroicons/react/outline';
+import { ChevronLeftIcon} from '@heroicons/react/outline';
 import { useState, useEffect } from 'react';
 import SelectPreference from './SelectPreference';
 import { Link } from "react-router-dom";
-
 import axios from 'axios';
 
 const Preferences = (props) => {
@@ -18,17 +16,15 @@ const Preferences = (props) => {
   useEffect(() => {
     axios.get(`http://www.mapquestapi.com/geocoding/v1/address?key=${process.env.REACT_APP_MQ_KEY}&location=${newPref.location},BC,CA`)
       .then((results) => {
-        console.log('results', results.data.results);
         const latLng = [];
         latLng.push(results.data.results[0].locations[0].latLng.lat);
         latLng.push(results.data.results[0].locations[0].latLng.lng);
-        console.log('latlng');
         setCoords([...latLng]);
       })
       .catch((error) => console.log('error', error));
   }, []);
 
-  // Helper to find new location
+  // Helper to find new location coords => city name
   const newLocation = (newCoords) => {
     axios.get(`http://www.mapquestapi.com/geocoding/v1/reverse?key=${process.env.REACT_APP_MQ_KEY}&location=${newCoords[0]},${newCoords[1]}&includeRoadMetadata=false&includeNearestIntersection=false`)
       .then((results) => {

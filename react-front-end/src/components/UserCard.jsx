@@ -4,7 +4,6 @@ import ImageReplacer from './ImageReplacer';
 import PreferenceBox from './Preferences/PreferenceBox';
 import SelectPreference from './Preferences/SelectPreference';
 import Maps from './Maps';
-
 import axios from 'axios';
 
 const UserCard = (props) => {
@@ -24,7 +23,6 @@ const UserCard = (props) => {
         const latLng = [];
         latLng.push(results.data.results[0].locations[0].latLng.lat);
         latLng.push(results.data.results[0].locations[0].latLng.lng);
-        console.log('latlng');
         setCoords([...latLng]);
       })
       .catch((error) => console.log('error', error));
@@ -63,11 +61,6 @@ const UserCard = (props) => {
     } else if (direction === 'next' && pager !== props.photos.length - 1) {
       setPager(prev => prev + 1);
     }
-  };
-
-  // Helper to undo changes
-  const undoChanges = () => {
-    console.log('undo clicked, go back to old values', profileHistory)
   };
 
   // Helper to update your profile
@@ -129,7 +122,6 @@ const UserCard = (props) => {
   // Helper for selectable options for editing profile
   const selectableHelper = (currentValues) => {
     if (!currentValues.open) {
-      console.log('moving up', currentValues);
       setEditSelectable({...editSelectable, open: true, ...currentValues});
     } else {
       setEditSelectable({open: false});
