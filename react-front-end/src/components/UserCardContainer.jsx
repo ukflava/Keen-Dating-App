@@ -25,20 +25,7 @@ const UserCardContainer = (props) => {
 
 
 
-  //  Filter  users before mapping - import pref here
-  
-  
-  // let filteredUsers;
-  // const [cardshuffle, setcardShuffle] = useState(false)
-  
-  // useEffect(() => {
-  //   filteredUsers?.sort((a, b) => {return 0.5 - Math.random()})
-    
-  // }, []);
-  
-  
-  
-  const pref = props.preferences
+    const pref = props.preferences
   
   // I know that code is not DRY - but i cannot use 2 ternary operatiors and && symbols in 1 conditional
   let filteredUsers = props.users?.filter( a => {
@@ -50,8 +37,9 @@ const UserCardContainer = (props) => {
          a.age >= pref.min_age &&
          a.age <= pref.max_age &&
          a.height_in_cm >= pref.min_height_in_cm &&
-         a.height_in_cm <= pref.max_height_in_cm &&
-         pref.genders === 3 ? a.gender_id : a.gender_id === pref.gender_id ):
+         a.height_in_cm <= pref.max_height_in_cm
+        
+                  ):
  
  // if dating_goal === 1 show all prefs
          (
@@ -62,17 +50,24 @@ const UserCardContainer = (props) => {
        a.age >= pref.min_age &&
        a.age <= pref.max_age &&
        a.height_in_cm >= pref.min_height_in_cm &&
-       a.height_in_cm <= pref.max_height_in_cm &&
-       pref.genders === 3 ? a.gender_id : a.gender_id === pref.gender_id
-         )
+       a.height_in_cm <= pref.max_height_in_cm
+               )
       ) {
          return true
        }
        else return false
    });
 
+   let filteredWithGender = filteredUsers?.filter( a => {
+    if ( pref.genders !== 3 ? a.gender_id === pref.genders : a.gender_id)
+    {return true}
+    else return false
+   })
 
-  const userCards = filteredUsers?.map((user) => {
+    console.log("pref", pref)
+   console.log("filter", filteredUsers)
+ 
+  const userCards = filteredWithGender?.map((user) => {
     return (
       <TinderCard onSwipe={(direction) => onSwipe(direction, user.id)} onCardLeftScreen={() => onCardLeftScreen(user.id)} className="keen-tinder-card w-full rounded-xl drop-shadow-2xl" key={user.id}>
         <UserCard 
