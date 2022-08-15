@@ -3,7 +3,6 @@ import { useState } from 'react';
 import moment from 'moment';
 
 const MessageBubble = (props) => {
-  // console.log("selected props from bubble", props)
   const [selected, setSelected] = useState(false);
 
   const selectMsg = () => {
