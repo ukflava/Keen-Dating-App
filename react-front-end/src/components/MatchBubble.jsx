@@ -28,7 +28,6 @@ const MatchBubble = (props) => {
         ...lastMsg,
         message_seen: true,
       };
-      console.log('msgupdate', msgUpdate);
       axios.post('/api/users/messages/seen', msgUpdate)
         .then((results) => {
           props.setSeenUpdate(Date.now());
