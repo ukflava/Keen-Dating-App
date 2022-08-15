@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import TextList from './TextList';
-import Error from './Error';
 import { GiphyFetch } from '@giphy/js-fetch-api';
 import { PlusCircleIcon } from '@heroicons/react/outline';
 
@@ -19,10 +18,12 @@ const GiphyTable = (props) => {
 
   //Handle Giphy input
   const handleInput = (e) => {
+    e.preventDefault();
     setText(e.target.value)
   };
 
   const handleSubmit = (e) => {
+    e.preventDefault();
     if (text.length === 0) {
       console.log("input is empty right now, please insert text")
       setErr(true)
@@ -41,15 +42,17 @@ const GiphyTable = (props) => {
     setErr(false);
   }
 
-
   return (
    <> 
    <PlusCircleIcon className='emoji-icon mr-1 w-5 h-5 text-black bg-white relative'
       onClick={tableClickHandler} />
     {props.giphyOpen
     ? <div className='absolute bg-white bottom-24 z-50'>
-      <input className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' placeholder='Search giphy' value={text} onChange={handleInput} />
-      <button className='bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-2 border border-blue-500 hover:border-transparent rounded-full text-xs' onClick={handleSubmit}>Submit</button>
+      <input className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' placeholder='Search giphy' value={text} onChange={handleInput} onClick={handleSubmit}/>
+
+
+      {results && <TextList className="flex flex-row" sendGiphy={props.sendGiphy} gifs={results}/>}
+
     </div>
     : <></>
   }
