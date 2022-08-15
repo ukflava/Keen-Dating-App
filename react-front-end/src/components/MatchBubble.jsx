@@ -1,16 +1,11 @@
-// feature - when a match happens, it should add to the match list - possibly notify on nav bar too
-import {useState, useEffect} from 'react';
 import moment from 'moment';
 import axios from 'axios';
 
 const MatchBubble = (props) => {
-  // const [lastMsg, setLastMsg] = useState({});
-  // Build updated latest msg data, post rqeuest to have seen the message and call selectHandler
   const selectHelper = () => {
     const lastMsg = props.matchData.messages[props.matchData.messages.length - 1];
-    console.log('lastmsg', lastMsg);
 
-    if (!props.matchData.seen || !props.matchData.messages.length === 0) {
+    if (!props.matchData.seen) {
       props.selectHandler(props.matchData);
       const userSeen = {
         matchId: props.matchData.id,
@@ -24,12 +19,15 @@ const MatchBubble = (props) => {
         .catch((error) => console.log('error', error));
     };
 
-    if (!lastMsg.message_seen) {
+    if (props.matchData.seen && !props.matchData.messages.length < 1) {
+      props.selectHandler(props.matchData);
+    };
+
+    if (lastMsg && !lastMsg.message_seen) {
       const msgUpdate = {
         ...lastMsg,
         message_seen: true,
       };
-      console.log('msgupdate', msgUpdate);
       axios.post('/api/users/messages/seen', msgUpdate)
         .then((results) => {
           props.setSeenUpdate(Date.now());
@@ -39,7 +37,7 @@ const MatchBubble = (props) => {
     props.selectHandler(props.matchData);
   };
   
-  // ?????
+  // Catch error render
   if (!props.matchData) {
     return (
       <div>Loading...</div>

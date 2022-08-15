@@ -1,7 +1,8 @@
-import {RefreshIcon, CheckIcon, ChevronRightIcon, ChevronLeftIcon} from '@heroicons/react/outline';
+import { ChevronRightIcon } from '@heroicons/react/outline';
 
 const PreferenceBox = (props) => {
 
+  // Builds and call function passed from above to toggle open and close nad pass along current data
   const selectOption = () => {
     if (props.editView) {
       const currentVals = {
@@ -18,6 +19,7 @@ const PreferenceBox = (props) => {
     }
   };
 
+  // Render if editview is set to true with the help of selecoption
   if (props.editView) {
     return (
       <div className='flex items-center bg-white justify-between my-3' onClick={selectOption}>
@@ -41,6 +43,7 @@ const PreferenceBox = (props) => {
     );
   };
 
+  // What renders if false 
   if (!props.editView) {
     return (
       <div className='cursor-pointer flex items-center bg-white justify-between my-3' onClick={selectOption}>
