@@ -9,7 +9,7 @@ const NoMatches = () => {
       </div>
       <Link to='/' className='bg-fuchsia-800 rounded-md py-1 my-2 w-1/3'><button className='bg-fuchsia-800 text-white font-semibold rounded-md py-1 my-1'>Start Liking</button></Link>
     </div>
-  )
-}
+  );
+};
 
 export default NoMatches;

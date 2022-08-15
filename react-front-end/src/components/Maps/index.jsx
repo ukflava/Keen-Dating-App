@@ -1,14 +1,12 @@
 import { Map, Marker } from 'pigeon-maps';
-import { osm, stamenToner  } from 'pigeon-maps/providers';
+import { osm } from 'pigeon-maps/providers';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 
 const Maps = (props) => {
   const [center, setCenter] = useState([...props.coords]);
-  const [zoom, setZoom] = useState(11)
-
   const color = `#32003a`;
 
+  // Added a set timeout so actual api call can get made moment user stops moving the map
   useEffect(() => {
     let delay = setTimeout(() => {
       props.newLocation(center);
@@ -30,7 +28,7 @@ const Maps = (props) => {
         />
       </Map>
     </>
-    )
+  );
 };
 
 export default Maps;
