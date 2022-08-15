@@ -5,7 +5,7 @@ const MatchBubble = (props) => {
   const selectHelper = () => {
     const lastMsg = props.matchData.messages[props.matchData.messages.length - 1];
 
-    if (!props.matchData.seen || !props.matchData.messages.length === 0) {
+    if (!props.matchData.seen) {
       props.selectHandler(props.matchData);
       const userSeen = {
         matchId: props.matchData.id,
@@ -19,11 +19,11 @@ const MatchBubble = (props) => {
         .catch((error) => console.log('error', error));
     };
 
-    if (!lastMsg) {
+    if (props.matchData.seen && !props.matchData.messages.length < 1) {
       props.selectHandler(props.matchData);
     };
 
-    if (!lastMsg.message_seen) {
+    if (lastMsg && !lastMsg.message_seen) {
       const msgUpdate = {
         ...lastMsg,
         message_seen: true,
