@@ -26,6 +26,7 @@ const App = () => {
     updatePreferences,
     handleClickLogOut,
     updateProfile,
+    filtered, setFiltered,
   } = useAppData();
 
   // Render the following if state is empty and loggedIn as a user to wait until fetch is complete
@@ -56,6 +57,7 @@ const App = () => {
                 likedBy={state.likedBy}
                 swipeUser={swipeUser}
                 profile={false}
+                filtered={filtered}
               />
             </>
         } />
