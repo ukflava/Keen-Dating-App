@@ -1,14 +1,9 @@
-// feature - when a match happens, it should add to the match list - possibly notify on nav bar too
-import {useState, useEffect} from 'react';
 import moment from 'moment';
 import axios from 'axios';
 
 const MatchBubble = (props) => {
-  // const [lastMsg, setLastMsg] = useState({});
-  // Build updated latest msg data, post rqeuest to have seen the message and call selectHandler
   const selectHelper = () => {
     const lastMsg = props.matchData.messages[props.matchData.messages.length - 1];
-    console.log('lastmsg', lastMsg);
 
     if (!props.matchData.seen || !props.matchData.messages.length === 0) {
       props.selectHandler(props.matchData);
@@ -22,6 +17,10 @@ const MatchBubble = (props) => {
           props.setSeenUpdate(Date.now());
         })
         .catch((error) => console.log('error', error));
+    };
+
+    if (!lastMsg) {
+      props.selectHandler(props.matchData);
     };
 
     if (!lastMsg.message_seen) {
@@ -39,7 +38,7 @@ const MatchBubble = (props) => {
     props.selectHandler(props.matchData);
   };
   
-  // ?????
+  // Catch error render
   if (!props.matchData) {
     return (
       <div>Loading...</div>
