@@ -1,7 +1,7 @@
 context('Change preference to se matches', () => {
   
-  before(() => {
-        
+  beforeEach(() => {
+    cy.request('POST','/api/hardreset').wait(300)
     cy.visit("/")
     const login = 'ce@gmail.com'
     const password = '123'
@@ -10,10 +10,7 @@ context('Change preference to se matches', () => {
     cy.get('input[placeholder="Password"]').type(`${password}{enter}`).wait(500)
   })
 
-  beforeEach(() => {
-    cy.request('POST','/api/hardreset').wait(300)
-  })
-
+ 
 
   it("can change gender preferences", () => {
 
@@ -65,7 +62,7 @@ context('Change preference to se matches', () => {
     cy.get('div').contains( 'See where it goes').should('be.visible')
     cy.get('input[type="radio"]').check('1').wait(300);
     cy.get('div').contains("Looking for").should('be.visible');
-    cy.get('div').contains("Everyone").should('be.visible');
+    cy.get('div').contains("Not sure").should('be.visible');
     
 
 })
@@ -93,6 +90,7 @@ context('Change preference to se matches', () => {
     cy.get('div').contains( 'See where it goes').should('be.visible')
     cy.get('input[type="radio"]').check('1').wait(300);
     cy.get('div').contains("Everyone").should('be.visible');
+    cy.get('div').contains("Not sure").should('be.visible');
     cy.get('a').contains('Save').click().wait(300)
     cy.get('div').contains('Check back later to see new people or update your preferences.').should('be.visible')
 
