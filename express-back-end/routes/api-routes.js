@@ -271,6 +271,22 @@ router.get("/users/preferences", (req, res) => {
     })
     .catch((error) => console.log("err:", error));
 });
+// get request to get users preferences
+router.post("/hardreset", (req, res) => {
+  
+  const query = `
+  UPDATE users
+  SET drink_id=1, exercise_id=4, dating_goal_id=4
+  WHERE 
+    id = 1
+  RETURNING *;
+  `
+  return db.query(query, )
+    .then(({ rows: userPreferences }) => {
+      res.json(userPreferences[0]);
+    })
+    .catch((error) => console.log("err:", error));
+});
 
 // get all preference options
 router.get("/preferences", (req, res) => {

@@ -1,5 +1,12 @@
-context('Edit profile', () => {
-  beforeEach(() => {
+context('Change preferences', () => {
+  
+  before(() => {
+    // cy.request('POST', '/post', {  // whatever url your app uses to add  
+    //   // data for post
+    // })
+
+    cy.request('POST','/api/hardreset')
+    
     cy.visit("/")
     const login = 'ce@gmail.com'
     const password = '123'
@@ -7,41 +14,30 @@ context('Edit profile', () => {
     cy.get('input[placeholder="Username/Email"]').type(`${login}{enter}`);
     cy.get('input[placeholder="Password"]').type(`${password}{enter}`).wait(500)
   })
+  beforeEach(() => {
+    cy.visit("/hardreset") 
+  })
 
 
-  it("can edit profile", () => {
+  it("can change preferences and save it", () => {
 
     cy.visit("/preferences")
-    .should('have.text', 'Dating Preferences')
+    .contains('Dating Preferences')
     cy.get('div').contains('I want to meet...').click().wait(300)
-    .should('have.text', 'Woman')
-    .should('have.text', 'Everyone')
+    // .contains('Woman').should('be.visible')
+    // .contains('Everyone')
     cy.get('input[type="radio"]').check('3').wait(300);
     cy.contains("Everyone").should('be.visible');
     cy.get('div').contains('Someone who drinks...').click().wait(300)
-    .should('have.text', 'Socially')
-    .should('have.text', 'Yes')
+    // .contains( 'Socially')
+    // .contains( 'Yes')
     cy.get('input[type="radio"]').check('2').wait(300);
-    cy.contains("Sometimes").should('be.visible');
+    // cy.contains("Never").should('be.visible');
+    cy.get('a').contains('Save').click().wait(300)
+    .contains('update your preferences').should('be.visible')
 
 
 
 
-
-
-    cy.get('button[class="hover:text-fuchsia-800 bg-white "]').contains('View').click().wait(300);
-    cy.contains("bio changed").should('be.visible');
-    cy.get('button[class="hover:text-fuchsia-800 bg-white "]').contains('Edit').click().wait(300);
-    cy.get('textarea').contains('University').type(`${text2}{enter}`).wait(300);
-    cy.get('button[class="hover:text-fuchsia-800 bg-white "]').contains('View').click().wait(300);
-    cy.contains("galaxy").should('be.visible');
-    cy.get('button[class="hover:text-fuchsia-800 bg-white "]').contains('Edit').click().wait(300);
-    cy.get('div').contains('I drink').click().wait(300);
-    cy.get('div').contains('Never').click().wait(300)
-    cy.contains("Never").should('be.visible');
-     });
-
-
-
-
+})
 })

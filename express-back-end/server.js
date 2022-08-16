@@ -125,4 +125,5 @@ App.post("/logout", (req, res) => {
   req.session = null;
   res.json(req.session);
 });
+
 // END OF LOG OUT
