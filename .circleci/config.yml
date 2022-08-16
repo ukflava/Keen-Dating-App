@@ -4,12 +4,10 @@ jobs:
     docker:
       - image: circleci/node:10.16
 
-    working_directory: ~/Keen-Dating-App/react-front-end
+    working_directory: ~/client/react-front-end
 
     steps:
-      - checkout:
-          path: ~/Keen-Dating-App/react-front-end
-
+      - checkout
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
