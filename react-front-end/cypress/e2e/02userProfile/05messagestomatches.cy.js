@@ -1,6 +1,6 @@
 context('Messaging to matches', () => {
   
-  before(() => {
+  beforeEach(() => {
     cy.request('POST','/api/hardreset').wait(300)
     cy.request('POST','/api/matchesreset').wait(300)
     cy.visit("/")
