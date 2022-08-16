@@ -8,7 +8,8 @@ jobs:
 
     steps:
       - checkout:
-        path: ~/react-front-end
+          path: ~/react-front-end
+
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
