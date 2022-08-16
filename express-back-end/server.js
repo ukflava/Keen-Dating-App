@@ -34,8 +34,11 @@ io.on("connection", (client) => {
 
   client.on("disconnect", () => {
     console.log("Client Disconnected!", client.user);
-    client.broadcast.emit('userDisconnect', client.user)
-    clients[client.user.id]? delete clients[client.user.id]: "";
+    client.broadcast.emit('userDisconnect', client.user);
+    if (client.user) {
+      delete clients[client.user.id];
+    }
+    // clients[client.user.id]? delete clients[client.user.id]: "";
   });
 
   client.on("sendMessage", (data) => {

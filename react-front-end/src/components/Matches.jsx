@@ -50,6 +50,12 @@ export default function Matches(props) {
 
   // socket io handlers
   useEffect(() => {
+    if (!props.user.id) {
+      console.log('undefined connection');
+      return;
+    };
+
+    console.log('initializing socket connection');
     const socket = io();
     setSocket(socket);
     const myPeer = new Peer();
@@ -100,7 +106,7 @@ export default function Matches(props) {
     return () => {
       socket.disconnect();
     };
-  }, []);
+  }, [props.user.id]);
 
   const startCall = () => {
     console.log('clicked');
