@@ -128,10 +128,12 @@ App.post("/login", (req, res) => {
   validateUser(username, password).then((response) => {
     console.log("login response", response);
     if (!response) {
-      res.redirect("/login");
+      res.json({error: 'login failed'});
+      // res.redirect("/login");
     } else {
       req.session.user_id = response;
-      res.redirect("/");
+      res.json({});
+      // res.redirect("/");
     }
   });
 });
