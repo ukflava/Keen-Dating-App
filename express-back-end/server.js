@@ -132,7 +132,7 @@ App.post("/login", (req, res) => {
       // res.redirect("/login");
     } else {
       req.session.user_id = response;
-      res.json({});
+      res.json({success: true});
       // res.redirect("/");
     }
   });
