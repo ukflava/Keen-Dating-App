@@ -5,6 +5,8 @@ const cookieSession = require("cookie-session");
 // const PORT = 8080;
 const { Server } = require("socket.io");
 const port = process.env.PORT || 8080;
+
+const cors = require('cors');
 ////// SOCKET IO
 const server = require("http").createServer(App);
 const http = App.listen(port, () => {
@@ -73,6 +75,14 @@ io.on("connection", (client) => {
 ////////
 
 // Express Configuration
+App.use(cors());
+App.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", '*');
+  res.header("Access-Control-Allow-Credentials", true);
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
+  next();
+});
 App.use(BodyParser.urlencoded({ extended: false }));
 App.use(BodyParser.json());
 App.use(Express.static("public"));
