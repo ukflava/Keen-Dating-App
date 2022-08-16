@@ -78,7 +78,7 @@ io.on("connection", (client) => {
 // App.set("trust proxy", 1);
 App.use(cors({
   credentials: true,
-  origin:'https://62fc0a38b862f70008e4e583--symphonious-sorbet-c91010.netlify.app/'
+  origin:'https://62fc0a38b862f70008e4e583--symphonious-sorbet-c91010.netlify.app'
  }));
 // App.use(function(req, res, next) {
 //   res.header("Access-Control-Allow-Origin", 'https://62fc0a38b862f70008e4e583--symphonious-sorbet-c91010.netlify.app/');
