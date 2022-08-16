@@ -32,7 +32,7 @@ export default function Nav(props) {
           <HomeIcon className="mx-5 h-7 cursor-pointer rounded-full hover:text-[#8A00A0] hover:bg-gray-100" />
           </Link>
 
-          <Link to='/matches'>
+          <Link id='matchesNAvLink' to='/matches'>
           <ChatAlt2Icon className="mx-5 h-7 cursor-pointer rounded-full hover:text-[#8A00A0] hover:bg-gray-100" />
           </Link>
 

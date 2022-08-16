@@ -1,4 +1,4 @@
-context('Choose matches', () => {
+context('Messaging to matches', () => {
   
   before(() => {
     cy.request('POST','/api/hardreset').wait(300)
@@ -9,11 +9,6 @@ context('Choose matches', () => {
   
     cy.get('input[placeholder="Username/Email"]').type(`${login}{enter}`);
     cy.get('input[placeholder="Password"]').type(`${password}{enter}`).wait(500)
-  })
-
-
-
-  it("can change preferences and save it", () => {
 
     cy.visit("/preferences")
     .contains('Dating Preferences')
@@ -26,16 +21,27 @@ context('Choose matches', () => {
     cy.get('div').contains('Looking for').click().wait(300)
     cy.get('input[type="radio"]').check('1').wait(300);
     cy.get('a').contains('Save').click().wait(300)
-   
-
+      
     cy.get('section').trigger('mouseover')
       .trigger('mousedown', 600, 350 )
     .trigger('mousemove', { clientX: 900, clientY: 300 })
     .trigger('mouseup', 900, 300 )
     
     cy.get('#matchesNAvLink').click().wait(300)
-
+    
+    
+  })
+  
+  
+  
+  it("can send messages to confirmed matches", () => {
+    const message = "Sample message from user"
+    
     cy.get('div').contains( 'Chris').should('be.visible')
-    cy.get('div').contains( 'martin').should('be.visible')
+    cy.get('div').contains( 'martin').click().wait(300)
+    cy.get('textarea[placeholder="Say something"]').type(`${message}{enter}`);
+    cy.get('path').click().wait(300)
+
+
 })
 })
