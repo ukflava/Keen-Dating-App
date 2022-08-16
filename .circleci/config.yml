@@ -28,7 +28,7 @@ deploy:
   steps:
     - add_ssh_keys:
         fingerprints:
-          - "f8:8b:bb:1e:0d:88:dd:94:06:fd:f5:d1:6f:be:63:9d"
+          - "1e:e9:cf:6a:52:3e:53:8e:2d:e3:f9:01:a4:38:01:ba"
     - checkout
     - run:
         name: Push feature/video to Production
