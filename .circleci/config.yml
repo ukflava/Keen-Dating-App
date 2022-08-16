@@ -19,8 +19,32 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: npm test
 
+  deploy:
+    machine:
+      enabled: true
+
+    working_directory: ~/react-front-end
+
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "c1:62:86:bc:27:7b:ef:e0:09:b9:c1:74:69:f0:21:40"
+      - checkout
+      - run:
+          name: Push Feature/video to Production
+          command: |
+            git push https://github.com/josemourinho333/Keen-Dating-App/tree/feature/video feature/video:production
 workflows:
   version: 2
-  test:
+  test_and_deploy:
     jobs:
-      - build
+      - build:
+          filters:
+            branches:
+              ignore: production
+      - deploy:
+          filters:
+            branches:
+              ignore: production
+          requires:
+            - build
