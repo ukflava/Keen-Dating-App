@@ -6,7 +6,6 @@ const cookieSession = require("cookie-session");
 const { Server } = require("socket.io");
 
 ////// SOCKET IO
-
 const server = require("http").createServer(App);
 const http = App.listen(8080, () => {
   console.log(`Server running at port: 8080`);
@@ -62,6 +61,11 @@ io.on("connection", (client) => {
         .catch((error) => console.log("error", error))
     );
   });
+
+  client.on('find-user', (userId) => {
+    io.sockets.emit('remote-user', clients[userId], clients[userId].peerId);
+  });
+
 });
 ////////
 

@@ -3,8 +3,10 @@ import Conversation from "./Conversation";
 import MatchesListHeader from './MatchesListHeader';
 import MatchBubble from './MatchBubble';
 import NoMatches from "./NoMatches";
-import {useState, useEffect} from 'react';
+import VidRoom from "./VidRoom";
+import {useState, useEffect, useRef} from 'react';
 import io from 'socket.io-client';
+import Peer from 'peerjs';
 
 export default function Matches(props) {
   const [selected, setSelected] = useState(null);
@@ -12,6 +14,8 @@ export default function Matches(props) {
   const [socket, setSocket] = useState();
   const [message, setMessage] = useState('');
   const [matchIds, setMatchIds] = useState([]);
+  const [roomOpen, setRoomOpen] = useState(false);
+  const [roomId, setRoomId] = useState(4);
 
   // Click handler to set current view/chat 
   const selectHandler = (matchObj) => {
@@ -38,13 +42,26 @@ export default function Matches(props) {
     setMatchIds([...arr]);
   }, [props.allMessages, props.matches, selected]);
 
+  const [peer, setPeer] = useState(null);
+  const [remotePeerId, setRemotePeerId] = useState(null);
+  const peerInstance = useRef(null);
+  const remoteVideoRef = useRef(null);
+  const currentUserVideoRef = useRef(null);
+
   // socket io handlers
   useEffect(() => {
     const socket = io();
     setSocket(socket);
+    const myPeer = new Peer();
     socket.on('connect', () => {
-      const data = {id: props?.user?.id, name: props?.user?.name,}
-      socket.emit('user', data);
+      myPeer.on('open', (peerId) => {
+        setPeer(peerId);
+        const data = {id: props?.user?.id, name: props?.user?.name, peerId}
+        socket.emit('user', data);
+        // socket.emit('join-room', roomId, peerId);
+      });
+      // const data = {id: props?.user?.id, name: props?.user?.name,}
+      // socket.emit('user', data);
     });
 
     socket.on('disconnect', () => {
@@ -57,11 +74,56 @@ export default function Matches(props) {
       }
     });
 
+    socket.on('remote-user', (remoteUserId, remoteId) => {
+      console.log('peer', peer);
+      if (remoteId !== peer) {
+        setRemotePeerId(remoteId);
+      }
+    });
+
+    myPeer.on('call', (call) => {
+      const getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+
+      getUserMedia({video: true, audio: true}, (mediaStream) => {
+        currentUserVideoRef.current.srcObject = mediaStream;
+        currentUserVideoRef.current.play();
+        call.answer(mediaStream);
+        call.on('stream', (remoteStream) => {
+          remoteVideoRef.current.srcObject = remoteStream;
+          remoteVideoRef.current.play();
+        });
+      })
+    });
+
+    peerInstance.current = myPeer;
     // clean up
     return () => {
       socket.disconnect();
     };
   }, []);
+
+  const startCall = () => {
+    console.log('clicked');
+    setRoomOpen(true);
+    socket.emit('find-user', selected.id);
+  };
+
+  const call = (remoteId) => {
+    const getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+
+    getUserMedia({video: true, audio: true}, (mediaStream) => {
+
+      currentUserVideoRef.current.srcObject = mediaStream;
+      currentUserVideoRef.current.play();
+
+      const call = peerInstance.current.call(remoteId, mediaStream);
+
+      call.on('stream', (remoteStream) => {
+        remoteVideoRef.current.srcObject = remoteStream;
+        remoteVideoRef.current.play();
+      });
+    });
+  };
 
   // gets called when send button is clicked
   const sendToServer = () => {
@@ -80,6 +142,7 @@ export default function Matches(props) {
     }
   };
 
+  // sendToServer fucntion but for giphy
   const sendGiphyToServer = (url) => {
     if (url) {
       const msgData = {
@@ -122,7 +185,7 @@ export default function Matches(props) {
   });
 
   return (
-    <div className='outer-most-matches-div grid'>
+    <div className='relative outer-most-matches-div grid'>
       <Conversation 
         selected={selected} 
         user={props.user} 
@@ -134,7 +197,32 @@ export default function Matches(props) {
         setMessage={setMessage}
         matchesData={matchesData}
         sendGiphyToServer={sendGiphyToServer}
+        startCall={startCall}
       />
+      {roomOpen
+        ?     <div className='absolute inset-0 z-50 bg-gray-500/60 flex flex-col items-center justify-center'>
+      <div className="bg-transparent flex flex-col w-2/3 h-4/5">
+      <div className="flex bg-transparent justify-between">
+        <button onClick={() => setRoomOpen(false)} type="button" className="text-white bg-fuchsia-800 px-2 oy-1 rounded-full max-w-max mb-2">
+            X
+        </button>
+        <button onClick={() => call(remotePeerId)} type="button" className="text-white bg-fuchsia-800 px-2 oy-1 rounded-full max-w-max mb-2">
+          Start
+        </button>
+      </div>
+
+        <div className="video-grid bg-white h-full">
+          <div className="my-video border border-fuchsia-800">
+            <video ref={currentUserVideoRef}/>
+          </div>
+          <div className="match-video border border-red-500">
+            <video ref={remoteVideoRef} />
+          </div>
+        </div>
+      </div>
+    </div>
+        : <></>
+      }
       <MatchesListHeader user={props.user} />
       <div className="bg-white matches-bubble-list flex flex-col border-l border-t border-b border-gray-300 py-1">
         {match ? match : "loading"}
