@@ -214,8 +214,8 @@ VALUES
 INSERT INTO matchings (from_user_id, to_user_id, like_value, seen, matched_date) 
 VALUES 
 
-(2, 1, true, true, CURRENT_TIMESTAMP),
-
+(21, 1, true, true, CURRENT_TIMESTAMP),
+(1, 21, false, false, CURRENT_TIMESTAMP),
 (4, 1, true, true, CURRENT_TIMESTAMP),
 
 (5, 1, true, true, CURRENT_TIMESTAMP),

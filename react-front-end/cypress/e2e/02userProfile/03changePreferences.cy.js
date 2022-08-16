@@ -1,11 +1,7 @@
 context('Change preferences', () => {
   
   before(() => {
-    // cy.request('POST', '/post', {  // whatever url your app uses to add  
-    //   // data for post
-    // })
-
-    cy.request('POST','/api/hardreset').wait(1000)
+      cy.request('POST','/api/hardreset').wait(300)
     
     cy.visit("/")
     const login = 'ce@gmail.com'
@@ -14,10 +10,6 @@ context('Change preferences', () => {
     cy.get('input[placeholder="Username/Email"]').type(`${login}{enter}`);
     cy.get('input[placeholder="Password"]').type(`${password}{enter}`).wait(500)
   })
-  // beforeEach(() => {
-  //   cy.visit("/hardreset") 
-  // })
-
 
   it("can change preferences and save it", () => {
 
@@ -34,7 +26,15 @@ context('Change preferences', () => {
     cy.get('div').contains( 'Socially').should('be.visible')
     cy.get('div').contains( 'Yes').should('be.visible')
     cy.get('input[type="radio"]').check('2').wait(300);
-    // cy.contains("Never").should('be.visible');
+    cy.get('div').contains('Someone who exercises...').click().wait(300)
+    cy.get('div').contains( 'Never').should('be.visible')
+    cy.get('div').contains( 'Often').should('be.visible')
+    cy.get('input[type="radio"]').check('2').wait(300);
+    cy.get('div').contains('Looking for').click().wait(300)
+    cy.get('div').contains( 'Long-term').should('be.visible')
+    cy.get('div').contains( 'See where it goes').should('be.visible')
+    cy.get('input[type="radio"]').check('1').wait(300);
+    cy.get('div').contains("Everyone").should('be.visible');
     cy.get('a').contains('Save').click().wait(300)
     cy.get('div').contains('Check back later to see new people or update your preferences.').should('be.visible')
 

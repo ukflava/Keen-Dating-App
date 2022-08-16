@@ -271,14 +271,31 @@ router.get("/users/preferences", (req, res) => {
     })
     .catch((error) => console.log("err:", error));
 });
-// get request to get users preferences
+// reset preferences for cypress
 router.post("/hardreset", (req, res) => {
   
   const query = `
   UPDATE preferences
-  SET gender_id=1, drink_id=1, exercise_id=4, dating_goal_id=4
+  SET gender_id=1, drink_id=3, exercise_id=3, dating_goal_id=4
   WHERE 
     user_id = 1
+  RETURNING *;
+  `
+  return db.query(query, )
+    .then(({ rows: userPreferences }) => {
+      res.json(userPreferences[0]);
+    })
+    .catch((error) => console.log("err:", error));
+});
+// reset matches for cypress
+router.post("/matchesreset", (req, res) => {
+  
+  const query = `
+  UPDATE matchings
+  SET like_value=false, seen=false,
+  WHERE 
+  from_user_id = 1 AND
+  to_user_id = 21
   RETURNING *;
   `
   return db.query(query, )
