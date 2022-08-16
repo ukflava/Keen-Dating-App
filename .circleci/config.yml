@@ -4,12 +4,10 @@ jobs:
     docker:
       - image: circleci/node:10.16
 
-    working_directory: ~/Keen-Dating-App/react-front-end
+    working_directory: ~/react-front-end
 
     steps:
-      - checkout:
-          path: ~/Keen-Dating-App/react-front-end
-
+      - checkout
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
@@ -21,8 +19,33 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: npm test
 
+deploy:
+  machine:
+    enabled: true
+
+  working_directory: ~/react-front-end
+
+  steps:
+    - add_ssh_keys:
+        fingerprints:
+          - "f8:8b:bb:1e:0d:88:dd:94:06:fd:f5:d1:6f:be:63:9d"
+    - checkout
+    - run:
+        name: Push feature/video to Production
+        command: |
+          git push https://github.com/josemourinho333/Keen-Dating-App feature/video:production
+
 workflows:
   version: 2
-  test:
+  test_and_deploy:
     jobs:
-      - build
+      - build:
+          filters:
+            branches:
+              ignore: production
+      - deploy:
+          filters:
+            branches:
+              ignore: production
+          requires:
+            - build
