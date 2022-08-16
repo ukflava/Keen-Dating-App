@@ -75,6 +75,7 @@ io.on("connection", (client) => {
 ////////
 
 // Express Configuration
+App.set("trust proxy", 1);
 App.use(cors());
 App.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", '*');
