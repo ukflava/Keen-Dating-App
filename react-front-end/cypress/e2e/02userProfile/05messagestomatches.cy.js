@@ -40,7 +40,7 @@ context('Messaging to matches', () => {
     cy.get('div').contains( 'Chris').should('be.visible')
     cy.get('div').contains( 'martin').click().wait(300)
     cy.get('textarea[placeholder="Say something"]').type(`${message}{enter}`);
-    cy.get('path').click().wait(300)
+    cy.get('svg').first().click().wait(300)
 
 
 })
