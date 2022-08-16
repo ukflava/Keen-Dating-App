@@ -103,6 +103,7 @@ App.use("/api", apiRoutes);
 
 // return session.user_id value for checking log in state
 App.get("/loggedIn", (req, res) => {
+  console.log('reqsesion', req.session.user_id);
   res.json(req.session.user_id);
 });
 
@@ -132,6 +133,7 @@ App.post("/login", (req, res) => {
       // res.redirect("/login");
     } else {
       req.session.user_id = response;
+      console.log('reqsesion /login', req.session.user_id);
       res.json({success: true});
       // res.redirect("/");
     }
