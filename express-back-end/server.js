@@ -75,7 +75,7 @@ io.on("connection", (client) => {
 ////////
 
 // Express Configuration
-// App.set("trust proxy", 1);
+App.set("trust proxy", 1);
 App.use(cors({
   credentials: true,
   origin:'https://62fc0a38b862f70008e4e583--symphonious-sorbet-c91010.netlify.app'
