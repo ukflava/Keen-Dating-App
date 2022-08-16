@@ -26,7 +26,7 @@ describe("Visitor can enter login page", () => {
       .click()
       .should("not.have.text", "Log In");
   });
-  it("can logout with password", () => {
+  it("can logout from system", () => {
     cy.visit("/");
     const login = "ce@gmail.com";
     const password = "123";
