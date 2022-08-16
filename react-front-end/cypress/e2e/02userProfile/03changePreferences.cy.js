@@ -1,4 +1,4 @@
-context('Change preferences', () => {
+context('Change preference to se matches', () => {
   
   before(() => {
       cy.request('POST','/api/hardreset').wait(300)
@@ -11,7 +11,7 @@ context('Change preferences', () => {
     cy.get('input[placeholder="Password"]').type(`${password}{enter}`).wait(500)
   })
 
-  it("can change preferences and save it", () => {
+  it("can change preferences and save it to see matches after", () => {
 
     cy.visit("/preferences")
     .contains('Dating Preferences')

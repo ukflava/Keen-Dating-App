@@ -2,7 +2,7 @@ context('Choose matches', () => {
   
   before(() => {
     cy.request('POST','/api/hardreset').wait(300)
-    // cy.request('POST','/api/matchesreset').wait(300)
+    cy.request('POST','/api/matchesreset').wait(300)
     cy.visit("/")
     const login = 'ce@gmail.com'
     const password = '123'
@@ -27,6 +27,11 @@ context('Choose matches', () => {
     cy.get('input[type="radio"]').check('1').wait(300);
     cy.get('a').contains('Save').click().wait(300)
     
+    cy.get('section').trigger('mouseover')
+  // cy.trigger('mousedown', { which: 1})
+  .trigger('mousedown', 600, 350 )
+  .trigger('mousemove', { clientX: 900, clientY: 300 })
+  .trigger('mouseup', { clientX: 900, clientY: 300 })
 
 })
 })

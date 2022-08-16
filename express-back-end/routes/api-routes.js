@@ -292,10 +292,10 @@ router.post("/matchesreset", (req, res) => {
   
   const query = `
   UPDATE matchings
-  SET like_value=false, seen=false,
+  SET like_value=null, seen=false
   WHERE 
-  from_user_id = 1 AND
-  to_user_id = 21
+  from_user_id=1 AND
+  to_user_id=21
   RETURNING *;
   `
   return db.query(query, )
