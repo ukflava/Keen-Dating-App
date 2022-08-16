@@ -4,11 +4,11 @@ const BodyParser = require("body-parser");
 const cookieSession = require("cookie-session");
 // const PORT = 8080;
 const { Server } = require("socket.io");
-
+const port = process.env.PORT || 8080;
 ////// SOCKET IO
 const server = require("http").createServer(App);
-const http = App.listen(8080, () => {
-  console.log(`Server running at port: 8080`);
+const http = App.listen(port, () => {
+  console.log(`Server running at port: ${port}`);
 });
 
 const clients = {};
