@@ -96,6 +96,7 @@ App.use(
     keys: ["12345"],
     httpOnly: false, 
     sameSite: 'none',
+    secure: true
   })
 );
 
