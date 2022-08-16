@@ -31,7 +31,7 @@ context('Choose matches', () => {
   // cy.trigger('mousedown', { which: 1})
   .trigger('mousedown', 600, 350 )
   .trigger('mousemove', { clientX: 900, clientY: 300 })
-  .trigger('mouseup', { clientX: 900, clientY: 300 })
+  .trigger('mouseup', 900, 300 )
 
 })
 })
