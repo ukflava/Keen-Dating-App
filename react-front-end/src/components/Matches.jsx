@@ -91,11 +91,10 @@ export default function Matches(props) {
       const getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 
       getUserMedia({video: true, audio: true}, (mediaStream) => {
-        currentUserVideoRef.current.srcObject = mediaStream;
-        currentUserVideoRef.current.play();
+
         call.answer(mediaStream);
         call.on('stream', (remoteStream) => {
-          remoteVideoRef.current.srcObject = remoteStream;
+          remoteVideoRef.current.srcObject = mediaStream;
           remoteVideoRef.current.play();
         });
       })
@@ -118,10 +117,8 @@ export default function Matches(props) {
     const getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 
     getUserMedia({video: true, audio: true}, (mediaStream) => {
-
       currentUserVideoRef.current.srcObject = mediaStream;
       currentUserVideoRef.current.play();
-
       const call = peerInstance.current.call(remoteId, mediaStream);
 
       call.on('stream', (remoteStream) => {
