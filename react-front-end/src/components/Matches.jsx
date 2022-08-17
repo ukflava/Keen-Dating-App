@@ -183,6 +183,7 @@ export default function Matches(props) {
         setSeenUpdate={props.setSeenUpdate}
         setMatchesData={setMatchesData}
         setMessageSent={props.setMessageSent}
+        allMessages={props.allMessages}
       />
     );
   });
