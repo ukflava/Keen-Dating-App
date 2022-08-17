@@ -1,4 +1,27 @@
-# React + Express No-Fluff Boilerplate
+# Final Project: Keen Dating App 
+Keen is a dating app built with React, Node, Express, and PostgreSQL
+
+## Contributors:
+* [Phil Yoo](https://github.com/josemourinho333)
+* [Denis Kruteskii](https://github.com/ukflava)
+* [Ava Kuang](https://github.com/avacadok)
+
+## Core Features:
+* Users can edit their profile and see preview of the new changes
+* Users can see other profiles based on preferences and swipe left or right
+* Once both users have liked eachother they will be matched and can start chatting in real time or video call
+* Users have access to emojis and gifs built into the chat system
+* Users can update their profile based on multiple things such as gender, age, location, height, lifestyle choices and more
+
+## Stretch/Other features/clean ups we wanted to get to but ran out of time:
+* Account creation and sign up flow
+* Voice only call
+* Implement Spotify API to display top listened artists and set their fav song on their profile
+* Blocking + Unmatch system
+* Various clean ups - loading spinners, refactor, bcrpyt 
+* Better UI interfaces - incoming facetime call alert, updated profile alerts, various minor things to improve user experience
+
+
 
 A boilerplate project for anyone interested in making a project that uses React and Express.
 
