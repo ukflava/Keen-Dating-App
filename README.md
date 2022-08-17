@@ -13,7 +13,7 @@ Keen is a dating app built with React, Node, Express, and PostgreSQL
 * Users have access to emojis and gifs built into the chat system
 * Users can update their profile based on multiple things such as gender, age, location, height, lifestyle choices and more
 
-## Stretch/Other features/clean ups we wanted to get to but ran out of time:
+## Other features/clean ups for the future:
 * Account creation and sign up flow
 * Voice only call
 * Implement Spotify API to display top listened artists and set their fav song on their profile
@@ -21,49 +21,79 @@ Keen is a dating app built with React, Node, Express, and PostgreSQL
 * Various clean ups - loading spinners, refactor, bcrpyt 
 * Better UI interfaces - incoming facetime call alert, updated profile alerts, various minor things to improve user experience
 
+## Final Product
 
+### Main Use, Live Chatting and Video Call
+![Swiping](https://github.com/josemourinho333/Keen-Dating-App/blob/master/docs/keen-swiping.gif?raw=true)
+![Live Chat](https://github.com/josemourinho333/Keen-Dating-App/blob/master/docs/keen-livechat.gif?raw=true)
+![Video Call](https://github.com/josemourinho333/Keen-Dating-App/blob/master/docs/keen-videocall.gif?raw=true)
 
-A boilerplate project for anyone interested in making a project that uses React and Express.
+### Landing
+![Login Page](https://github.com/josemourinho333/Keen-Dating-App/blob/master/docs/Landing-Login.PNG?raw=true)
 
-This repository is a bootleg of @NimaBoscarino's [React Rails Boilerplate](https://github.com/NimaBoscarino/react-rails-boilerplate). It uses the same React app, but replaces the Rails server with an Express server.
+### Home
+![Home Page](https://github.com/josemourinho333/Keen-Dating-App/blob/master/docs/Homepage.PNG?raw=true)
 
-Note! This boilerplate has _no fluff_! That means that there's nothing set up for you to do authentication stuff, there's no Redux stuff, and there's no React Router stuff. On the Express end, there is no session storage or database connection.
+### Matches
+![Matches Page](https://github.com/josemourinho333/Keen-Dating-App/blob/master/docs/Matches-page.PNG?raw=true)
 
-The main important bit is that the React project has `proxy` set to `localhost:8080` in the `package.json` file, and that the Express app listens to port 8080 in `server.js`. Take a look!
+### Preferences Page + Preference Option
+![Pref Page](https://github.com/josemourinho333/Keen-Dating-App/blob/master/docs/Preferences-page.PNG?raw=true)
+![Pref Option](https://github.com/josemourinho333/Keen-Dating-App/blob/master/docs/Preference-option.PNG?raw=true)
 
-You can (and perhaps should) rename the directories `express-back-end` and `react-front-end` if you want-- The name doesn't matter.
+### Profile View/Edit
+![Profile View](https://github.com/josemourinho333/Keen-Dating-App/blob/master/docs/Profile-view-edit.PNG?raw=true)
+![Profile Edit](https://github.com/josemourinho333/Keen-Dating-App/blob/master/docs/Profile-view-edit-2.PNG?raw=true)
 
-## Running the projects
+### Emojis/Giphy API
+![Giphy](https://github.com/josemourinho333/Keen-Dating-App/blob/master/docs/Chatting-giphy.PNG?raw=true)
+![Emojis](https://github.com/josemourinho333/Keen-Dating-App/blob/master/docs/Chatting-emojis.PNG?raw=true)
 
-You need **TWO** terminal windows/tabs for this (or some other plan for running two Node processes).
+## Dependencies 
+### Front End
+* "@giphy/js-fetch-api": "^4.4.0",
+* "@giphy/react-components": "^6.0.1",
+* "@heroicons/react": "^1.0.6",
+* "axios": "^0.18.1",
+* "dotenv": "^16.0.1",
+* "emoji-picker-react": "^3.6.1",
+* "moment": "^2.29.4",
+* "multi-range-slider-react": "^1.0.7",
+* "pigeon-maps": "^0.21.0",
+* "react": "^16.8.6",
+* "react-dom": "^16.8.6",
+* "react-router": "^6.3.0",
+* "react-router-dom": "^6.3.0",
+* "react-scripts": "^5.0.1",
+* "react-tinder-card": "^1.4.5",
+* "socket.io-client": "^4.5.1",
+* "tailwindcss": "^3.1.8"
+* "peerjs"
 
-In one terminal, `cd` into `react-front-end`. Run `npm install` or `yarn` to install the dependencies. Then run `npm start` or `yarn start`, and go to `localhost:3000` in your browser.
+### Back End
+* "body-parser": "^1.18.3",
+* "cookie-session": "^2.0.0",
+* "dotenv": "^16.0.1",
+* "express": "^4.18.1",
+* "nodemon": "^1.19.4",
+* "pg": "^8.7.3",
+* "socket.io": "^4.5.1"
 
-In the other terminal, `cd` into `express-back-end`. Run `npm install` or `yarn` to install the dependencies, then `npm start` or `yarn start` to launch the server.
+### Getting Started
+1. Clone the repo
+2. Create .env file and fill out the following with your own creds
+   -  Backend - can copy this one
+      - PGHOST=localhost
+      - PGUSER=labber
+      - PGDATABASE=final_2
+      - PGPASSWORD=labber
+      - PGPORT=5432
+   - Frontend - use your own creds
+      - REACT_APP_MQ_KEY='mapquest_api_key'
+      - REACT_APP_GIPHY_KEY='giphy_api_key'
 
-In the browser, you can click on the button and see the data get loaded.
+3. NPM I in both express-back-end and react-front-end directories
+4. Cd into express-back-end and start with npm run go
+5. Cd into react-front-end and start with npm start 
 
-If this doesn't work, please message me!
-
-## Next steps
-
-From here, you can start working on your project!
-
-As soon as the dependencies are installed, your Express server can serve JSON and static assets (like images) in response to API calls from the React app. You can get started on developing your React app, routing plan, etc. right away! Any request that isn't handled by React is passed on to the Express server. That means that you can call a route like `/api/users` from React using `fetch`, `axios`, or something else, and Express will receive it as though they originated from the same app. For routing, best practice is to namespace all of your data routes to `/api`, so that they don't clash with other routing schemes, like React Router.
-
-At some point, you'll likely want to install and configure a database driver for Postgres or MongoDB-- Refer to past projects for hints on how to do this.
-
-And don't forget to update the README!
-
-## Example Projects
-
-You might want to look at examples of projects that have used this boilerplate for hints on how to extend it. Here are a few:
-
-* [Later Cart](https://github.com/bonitac/later-cart)
-* [Buddi.io](https://github.com/Danny-Tran/buddi.io)
-
-If you'd like your project added to the list, please shoot me a message.
-
-## Contact
-
-Please contact me on Slack (@garrettgsb) or Nima at `nima@lighthouselabs.com` if you have any questions, requests, or feedback, or post an issue to this repo. If you are using the boilerplate, I'd love to hear from you as well!
+Hope you enjoyed our app and all the work we put into it! 
