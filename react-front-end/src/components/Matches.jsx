@@ -82,7 +82,7 @@ export default function Matches(props) {
 
     socket.on('remote-user', (remoteUserId, remoteId) => {
       console.log('peer', peer);
-      if (remoteId !== peer) {
+      if (remoteId !== peer && remoteUserId !== props.user.id) {
         setRemotePeerId(remoteId);
       }
     });
@@ -91,8 +91,12 @@ export default function Matches(props) {
       const getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 
       getUserMedia({video: true, audio: true}, (mediaStream) => {
+        // comment these out for demo
+        // currentUserVideoRef.current.srcObject = mediaStream;
+        // currentUserVideoRef.current.play();
 
         call.answer(mediaStream);
+        // turn to mediaStream for demo
         call.on('stream', (remoteStream) => {
           remoteVideoRef.current.srcObject = mediaStream;
           remoteVideoRef.current.play();
