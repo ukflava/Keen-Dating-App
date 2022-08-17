@@ -5,8 +5,6 @@ const cookieSession = require("cookie-session");
 // const PORT = 8080;
 const { Server } = require("socket.io");
 const port = process.env.PORT || 8080;
-
-const cors = require('cors');
 ////// SOCKET IO
 const server = require("http").createServer(App);
 const http = App.listen(port, () => {
@@ -75,18 +73,6 @@ io.on("connection", (client) => {
 ////////
 
 // Express Configuration
-App.set("trust proxy", 1);
-App.use(cors({
-  credentials: true,
-  origin:'https://62fc0a38b862f70008e4e583--symphonious-sorbet-c91010.netlify.app'
- }));
-// App.use(function(req, res, next) {
-//   res.header("Access-Control-Allow-Origin", 'https://62fc0a38b862f70008e4e583--symphonious-sorbet-c91010.netlify.app/');
-//   res.header("Access-Control-Allow-Credentials", true);
-//   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-//   res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
-//   next();
-// });
 App.use(BodyParser.urlencoded({ extended: false }));
 App.use(BodyParser.json());
 App.use(Express.static("public"));
@@ -94,10 +80,7 @@ App.use(
   cookieSession({
     name: "session",
     keys: ["12345"],
-    httpOnly: false, 
-    sameSite: 'none',
-    secure: true,
-    proxy: true
+    httpOnly: false,
   })
 );
 
@@ -110,7 +93,6 @@ App.use("/api", apiRoutes);
 
 // return session.user_id value for checking log in state
 App.get("/loggedIn", (req, res) => {
-  console.log('reqsesion', req.session.user_id);
   res.json(req.session.user_id);
 });
 
@@ -136,13 +118,10 @@ App.post("/login", (req, res) => {
   validateUser(username, password).then((response) => {
     console.log("login response", response);
     if (!response) {
-      res.json({error: 'login failed'});
-      // res.redirect("/login");
+      res.redirect("/login");
     } else {
       req.session.user_id = response;
-      console.log('reqsesion /login', req.session.user_id);
-      res.json({success: true});
-      // res.redirect("/");
+      res.redirect("/");
     }
   });
 });

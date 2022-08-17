@@ -9,7 +9,7 @@ function LoginForm(props) {
     e.preventDefault();
     axios.post('/login', { username, password })
       .then((response) => {
-        if (!response.data.success) {
+        if (!response.data) {
           props.setLoggedIn(false);
         } else {
           setUsername('');
