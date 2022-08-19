@@ -92,13 +92,12 @@ export default function Matches(props) {
 
       getUserMedia({video: true, audio: true}, (mediaStream) => {
         // comment these out for demo
-        // currentUserVideoRef.current.srcObject = mediaStream;
-        // currentUserVideoRef.current.play();
+        currentUserVideoRef.current.srcObject = mediaStream;
+        currentUserVideoRef.current.play();
 
         call.answer(mediaStream);
-        // turn to mediaStream for demo
         call.on('stream', (remoteStream) => {
-          remoteVideoRef.current.srcObject = mediaStream;
+          remoteVideoRef.current.srcObject = remoteStream; // turn to mediaStream for demo
           remoteVideoRef.current.play();
         });
       })

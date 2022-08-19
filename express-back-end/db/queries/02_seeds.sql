@@ -90,32 +90,18 @@ VALUES
 
 INSERT INTO messages (from_user_id, to_user_id, message, message_seen, date_sent) 
 VALUES 
-(1, 2, 'Cindy Hello', true, CURRENT_TIMESTAMP),
-(2, 1, 'Hi', true, CURRENT_TIMESTAMP),
-(1, 2, 'What kind of hobbies do you have?', true, CURRENT_TIMESTAMP),
-(2, 1, 'Chillin', true, CURRENT_TIMESTAMP),
-(1, 2, 'Okay, do you have a favourite movie?', true, CURRENT_TIMESTAMP),
-(2, 1, 'Yea', true, CURRENT_TIMESTAMP),
-(1, 2, '...okay what is it', true, CURRENT_TIMESTAMP),
-(2, 1, 'idk', true, CURRENT_TIMESTAMP),
-(1, 2, 'I can do this all day', true, CURRENT_TIMESTAMP),
-
 (1, 14, 'Adopt me im a baby 👼', true, CURRENT_TIMESTAMP),
-(14, 1, 'K bye', false, CURRENT_TIMESTAMP);
+(14, 1, 'K bye', true, CURRENT_TIMESTAMP);
 
 INSERT INTO matchings (from_user_id, to_user_id, like_value, seen, matched_date) 
 VALUES 
 
-(1, 2, true, true, CURRENT_TIMESTAMP),
-(2, 1, true, true, CURRENT_TIMESTAMP),
-
 (1, 14, true, true, CURRENT_TIMESTAMP),
 (14, 1, true, true, CURRENT_TIMESTAMP),
 
-(1, 5, true, false, CURRENT_TIMESTAMP),
-(5, 1, true, true, CURRENT_TIMESTAMP),
-
+(2, 1, true, true, CURRENT_TIMESTAMP),
 (3, 1, true, false, CURRENT_TIMESTAMP),
+(5, 1, true, true, CURRENT_TIMESTAMP),
 (4, 1, true, false, CURRENT_TIMESTAMP),
 (6, 1, true, false, CURRENT_TIMESTAMP),
 (7, 1, true, false, CURRENT_TIMESTAMP),
