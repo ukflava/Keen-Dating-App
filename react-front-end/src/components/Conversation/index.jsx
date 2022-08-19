@@ -7,7 +7,7 @@ const Conversation = (props) => {
     <div className='conversation-container grid border border-gray-300'>
       { props.selected 
         ? <>
-          <MatchHeader selected={props.selected}/>
+          <MatchHeader selected={props.selected} startCall={props.startCall} />
           <ChatRoom 
             selected={props.selected} 
             user={props.user} 
