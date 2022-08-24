@@ -10,7 +10,7 @@ const Maps = (props) => {
   useEffect(() => {
     let delay = setTimeout(() => {
       props.newLocation(center);
-    }, 2000)
+    }, 1000)
     
     return () => {
       clearTimeout(delay);

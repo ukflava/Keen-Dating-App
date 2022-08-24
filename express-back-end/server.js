@@ -4,12 +4,11 @@ const BodyParser = require("body-parser");
 const cookieSession = require("cookie-session");
 // const PORT = 8080;
 const { Server } = require("socket.io");
-
+const port = process.env.PORT || 8080;
 ////// SOCKET IO
-
 const server = require("http").createServer(App);
-const http = App.listen(8080, () => {
-  console.log(`Server running at port: 8080`);
+const http = App.listen(port, () => {
+  console.log(`Server running at port: ${port}`);
 });
 
 const clients = {};
@@ -35,7 +34,10 @@ io.on("connection", (client) => {
 
   client.on("disconnect", () => {
     console.log("Client Disconnected!", client.user);
-    client.broadcast.emit('userDisconnect', client.user)
+    client.broadcast.emit('userDisconnect', client.user);
+    if (client.user) {
+      delete clients[client.user.id];
+    }
     // clients[client.user.id]? delete clients[client.user.id]: "";
   });
 
@@ -62,6 +64,11 @@ io.on("connection", (client) => {
         .catch((error) => console.log("error", error))
     );
   });
+
+  client.on('find-user', (userId) => {
+    io.sockets.emit('remote-user', clients[userId], clients[userId].peerId);
+  });
+
 });
 ////////
 

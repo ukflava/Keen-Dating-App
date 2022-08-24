@@ -188,6 +188,7 @@ router.get("/users/matchings", (req, res) => {
       users.height_in_cm,
       users.location,
       drinks.value AS drink,
+      exercises.value AS exercises,
       dating_goals.value AS dating_goal,
       seen,
       seen_ref_id,
@@ -204,6 +205,8 @@ router.get("/users/matchings", (req, res) => {
       ON users.dating_goal_id = dating_goals.id
     LEFT JOIN genders
       ON genders.id = users.gender_id 
+    LEFT JOIN exercises
+      ON exercises.id = users.exercise_id 
     ;
   `;
   return db
